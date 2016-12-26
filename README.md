@@ -11,7 +11,7 @@ allprojects {
 }
 
 
-     compile 'com.github.SelfImprCp:GuWenTongUitl:v1.0.0'
+     compile 'com.github.SelfImprCp:AnYinUitl:v.1.0.0'
 
 2.注意事项：
  因为包中已经添加：  权限
