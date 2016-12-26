@@ -1,0 +1,405 @@
+package cn.myasapp.main.ui;
+
+import android.app.Dialog;
+import android.content.DialogInterface;
+import android.os.Handler;
+import android.support.v7.app.AlertDialog;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import com.cp.mylibrary.city.ScrollerNumberPicker;
+import com.cp.mylibrary.utils.AreaParserUitl;
+import com.cp.mylibrary.utils.DateTimePickDialogUtil;
+import com.cp.mylibrary.utils.FileUtil;
+import com.cp.mylibrary.utils.LogCp;
+import com.cp.mylibrary.utils.StringUtils;
+
+
+import org.kymjs.kjframe.ui.BindView;
+
+import cn.myasapp.main.R;
+import cn.myasapp.main.TestUIhelper;
+import cn.myasapp.main.bean.UserBean;
+
+
+/**
+ * Created by Jerry on 2016/6/24.
+ */
+public class TestActivity extends BaseActivity {
+
+
+    private Dialog dialog;
+
+
+    @BindView(id = R.id.test_app_utils, click = true)
+    private TextView test_app_utils;
+
+
+    @BindView(id = R.id.test_date_time_util, click = true)
+    private TextView test_date_time_util;
+
+
+    @BindView(id = R.id.file_test, click = true)
+    private TextView file_test;
+
+
+    @BindView(id = R.id.key_board_test, click = true)
+    private TextView key_board_test;
+
+
+    @BindView(id = R.id.object_utils_test, click = true)
+    private TextView object_utils_test;
+
+    @BindView(id = R.id.random_utils_test, click = true)
+    private TextView random_utils_test;
+
+
+    @BindView(id = R.id.screen_utils_test, click = true)
+    private TextView screen_utils_test;
+
+
+    @BindView(id = R.id.cache_utils_test, click = true)
+    private TextView cache_utils_test;
+
+    @BindView(id = R.id.two_codes_test, click = true)
+    private TextView two_codes_test;
+
+
+    @BindView(id = R.id.create_two_codes_test, click = true)
+    private TextView create_two_codes_test;
+
+    @BindView(id = R.id.image_load_test, click = true)
+    private TextView image_load_test;
+
+    @BindView(id = R.id.banner_test, click = true)
+    private TextView banner_test;
+
+    @BindView(id = R.id.webview_test, click = true)
+    private TextView webview_test;
+
+    @BindView(id = R.id.viewpage_test, click = true)
+    private TextView viewpage_test;
+    @BindView(id = R.id.pullto_test, click = true)
+    private TextView pullto_test;
+
+
+    @BindView(id = R.id.dialog_test, click = true)
+    private TextView dialog_test;
+
+
+    @BindView(id = R.id.url_test, click = true)
+    private TextView url_test;
+
+    @BindView(id = R.id.pickview_test, click = true)
+    private TextView pickview_test;
+
+
+    @BindView(id = R.id.guestture_test, click = true)
+    private TextView guestture_test;
+
+    @BindView(id = R.id.xrefreshview_scrollview_test, click = true)
+    private TextView xrefreshview_listview_test;
+
+    @BindView(id = R.id.xrefreshview_receylie_test, click = true)
+    private TextView xrefreshview_receylie_test;
+
+
+    @BindView(id = R.id.date_select_test, click = true)
+    private TextView date_select_test;
+
+
+    @BindView(id = R.id.city_select_test, click = true)
+    private TextView city_select_test;
+
+
+    @BindView(id = R.id.city_parse_area, click = true)
+    private TextView city_parse_area;
+
+    @BindView(id = R.id.email_check_text, click = true)
+    private TextView email_check_text;
+
+    @BindView(id = R.id.download_file_show_text, click = true)
+    private TextView download_file_show_text;
+
+
+    @Override
+    public void setRootView() {
+
+        setContentView(R.layout.activity_test);
+    }
+
+
+    @Override
+    public void widgetClick(View v) {
+        super.widgetClick(v);
+
+        switch (v.getId()) {
+            // 测试AppUtils
+            case R.id.test_app_utils:
+
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+
+                    @Override
+                    public void run() {
+//                        new UpdateManagerUtil(TestActivity.this)
+//                                .checkUpdate();
+                    }
+                }, 2000);
+
+                break;
+
+            //DateTimeUtil 测试
+            case R.id.test_date_time_util:
+                TestUIhelper.showTestDateTimeUtil(this);
+                break;
+
+            // 测试  文件
+            case R.id.file_test:
+                TestUIhelper.showTestFileActivity(this);
+                break;
+
+
+            // KeyBoardUtils 测试
+            case R.id.key_board_test:
+
+                TestUIhelper.showtestKeyBoardUitls(this);
+
+                break;
+            //NetWorkUtil 测试
+            case R.id.net_work_test:
+                TestUIhelper.showTestNetWorkUitls(this);
+                break;
+
+            // 测试 ObjectUtils
+            case R.id.object_utils_test:
+                TestUIhelper.showTesObjectsUitls(this);
+
+                break;
+
+            // 测试 RandomUtils
+            case R.id.random_utils_test:
+
+                TestUIhelper.showTestRandomUtils(this);
+                break;
+
+            // 测试 screen
+            case R.id.screen_utils_test:
+                TestUIhelper.showTestScreenUtils(this);
+                break;
+
+
+            // 测试异常保存
+            case R.id.cache_utils_test:
+                UserBean user = null;
+                user.getName();
+
+
+                break;
+
+            case R.id.two_codes_test:
+
+                TestUIhelper.showTwoCode(this);
+                break;
+
+
+            case R.id.create_two_codes_test:
+
+                TestUIhelper.showCreateTwoCode(this);
+
+                break;
+
+            case R.id.image_load_test:
+
+                TestUIhelper.showImageLoad(this);
+
+                break;
+
+            case R.id.banner_test:
+
+                TestUIhelper.showBanner(this);
+
+                break;
+
+            case R.id.webview_test:
+
+                TestUIhelper.showWebView(this);
+
+                break;
+
+
+            case R.id.pullto_test:
+
+                TestUIhelper.showPullableListViewActivity(this);
+
+                break;
+
+
+            case R.id.viewpage_test:
+
+                TestUIhelper.showTextViewPageFragment(this);
+
+//                MainFocusListRes res = new  MainFocusListRes();
+//
+//                List<MainFocus> result = new ArrayList<MainFocus>();
+//
+//                 for (int i = 0;i<10;i++)
+//
+//                 {
+//
+//                     MainFocus  mainFocus = new MainFocus();
+//                     mainFocus.setId(i);
+//                     mainFocus.setShopName(i+"爱理");
+//
+//                     result.add(mainFocus);
+//
+//                 }
+//                res.setResult(result);
+//                res.setCode(0);
+//                res.setMsg("成功");
+//                String gson = GsonUtil.beanTojsonStr(res);
+//
+//                LogCp.i(LogCp.CP,TestActivity.class + "生成的json：" + gson);
+
+                break;
+
+
+            case R.id.dialog_test:
+
+                TestUIhelper.showDialogTestActivity(this);
+
+                break;
+
+
+            case R.id.url_test:
+
+                TestUIhelper.showUrlTestActivity(this);
+
+                break;
+
+            case R.id.pickview_test:
+
+                TestUIhelper.showTestPickerView(this);
+                break;
+
+
+            case R.id.xrefreshview_scrollview_test:
+
+                TestUIhelper.showTestScrollViewRefreshActivity(this);
+                break;
+
+
+            case R.id.xrefreshview_receylie_test:
+
+                TestUIhelper.showXRefreshListViewActivity(this);
+                break;
+
+
+            case R.id.guestture_test:
+
+                TestUIhelper.showGestureLockActivity(this);
+
+
+                break;
+
+
+            case R.id.date_select_test:
+                String initStartDateTime = "2013-09-03"; // 初始化开始时间
+                String initEndDateTime = "2014-08-23"; // 初始化结束时间
+                final DateTimePickDialogUtil dateTimePicKDialog = new DateTimePickDialogUtil(
+                        TestActivity.this, initEndDateTime, "选择时间");
+                dateTimePicKDialog.dateTimePicKDialog(initStartDateTime, initEndDateTime, "确认", "取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        String str = dateTimePicKDialog.getSelectDate();
+
+                        LogCp.i(LogCp.CP, TestActivity.class + "选择的日期 " + str);
+
+                    }
+                }, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+
+
+                break;
+
+
+            case R.id.city_select_test:
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(TestActivity.this);
+                View view = LayoutInflater.from(TestActivity.this).inflate(R.layout.addressdialog, null);
+                builder.setView(view);
+                LinearLayout addressdialog_linearlayout = (LinearLayout) view.findViewById(R.id.addressdialog_linearlayout);
+                final ScrollerNumberPicker provincePicker = (ScrollerNumberPicker) view.findViewById(R.id.province);
+                final ScrollerNumberPicker cityPicker = (ScrollerNumberPicker) view.findViewById(R.id.city);
+                final ScrollerNumberPicker counyPicker = (ScrollerNumberPicker) view.findViewById(R.id.couny);
+                final AlertDialog dialog = builder.show();
+
+                addressdialog_linearlayout.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+//                        textid.setText(provincePicker.getSelectedText()+cityPicker.getSelectedText()+counyPicker.getSelectedText());
+//                        Log.i("kkkk",provincePicker.getSelectedText()+cityPicker.getSelectedText()+counyPicker.getSelectedText());
+//                        dialog.dismiss();
+
+                        LogCp.i(LogCp.CP, TestActivity.class + "选择的省ID：" + ", 是执行这里了，," + provincePicker.getSelectedText());
+
+                        String str = provincePicker.getSelectedText();
+                        String provinceID = provincePicker.getSelectedProvinceID(str);
+
+
+                        String strCity = cityPicker.getSelectedText();
+                        String cityID = cityPicker.getSelectedCityID(provinceID, strCity);
+
+
+                        String strCounty = counyPicker.getSelectedText();
+                        String countyID = counyPicker.getSelectedCountyID(cityID, strCounty);
+
+                        LogCp.i(LogCp.CP, TestActivity.class + "选择的省ID：" + provinceID + ",,选择的市ID：" + cityID + ",,选择的区ID：" + countyID);
+
+                    }
+                });
+                break;
+
+
+            case R.id.city_parse_area:
+
+                AreaParserUitl areaParserUitl = new AreaParserUitl();
+                areaParserUitl.openGson(TestActivity.this);
+
+
+                break;
+
+
+            case R.id.email_check_text:
+
+
+                String strEmail = "321@qq.com";
+                LogCp.i(LogCp.CP, TestActivity.class + "是不是一个emaial :" + StringUtils.isEmail(strEmail));
+
+
+                break;
+
+
+            case R.id.download_file_show_text:
+                String url = "http://47.90.23.136:8012/js/ueditor/net/upload/file/20161209/6361688910084474983115143.pdf";
+                FileUtil fileUtil = new FileUtil(TestActivity.this);
+                fileUtil.showFileForWebView(url);
+
+                break;
+
+
+        }
+
+    }
+
+
+}
