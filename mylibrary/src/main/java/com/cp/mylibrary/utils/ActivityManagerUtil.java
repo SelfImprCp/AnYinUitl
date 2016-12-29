@@ -1,6 +1,7 @@
 package com.cp.mylibrary.utils;
 
 import android.app.Activity;
+import android.os.Process;
 
 import java.util.Stack;
 
@@ -63,7 +64,6 @@ public class ActivityManagerUtil {
 
     /**
      * 结束当前Activity（堆栈中最后一个压入的）
-     *
      */
     public void finishActivity() {
         Activity activity = activityStack.lastElement();
@@ -119,7 +119,8 @@ public class ActivityManagerUtil {
     public void AppExit() {
         try {
             finishAllActivity();
-            // System.exit(0);
+            Process.killProcess(Process.myPid());
+            System.exit(0);
         } catch (Exception e) {
         }
     }

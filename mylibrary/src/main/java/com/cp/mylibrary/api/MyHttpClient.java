@@ -123,7 +123,60 @@ public class MyHttpClient {
 
 
     }
+    /**
+     * 完整url访问
+     * @param partUrl
+     * @param handler
+     */
 
+    public static void getAbsoluteUrl(String partUrl, MyResponseHandler handler) {
+        client.get( partUrl, handler);
+
+
+        LogCp.d(LogCp.CP, MyHttpClient.class + " 请求方式：GET 无参"
+
+        );
+
+        LogCp.d(LogCp.CP, MyHttpClient.class + " 请求URL：" + getAbsoluteApiUrl(partUrl)
+
+        );
+
+    }
+
+
+
+    /**
+     * 完整url访问
+     * @param url
+     * @param params
+     * @param handler
+     */
+    public static void postAbsoluteUrl(String url, MyHttpParams params,
+                                       MyResponseHandler handler) {
+        params.putHeaders("cookie",Cookie);
+
+
+        client.post(url  , params, handler);
+
+        LogCp.d(LogCp.CP, MyHttpClient.class + " 请求方式：POST"
+
+        );
+        LogCp.d(LogCp.CP, MyHttpClient.class + " 请求参数 ："
+                + params.getUrlParams().toString()
+
+        );
+        LogCp.d(LogCp.CP, MyHttpClient.class + " 请求头  ："
+                +  params.getHeaders()
+
+        );
+
+        LogCp.d(LogCp.CP, MyHttpClient.class + " 请求URL：" +url
+
+        );
+
+
+
+    }
 
     /**
      * post 向服务器提交 json
