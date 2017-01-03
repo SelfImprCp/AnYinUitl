@@ -47,7 +47,7 @@ public class XRefreshListViewSize5Fragment<T extends MyEntity> extends MyBaseFra
 
 
     //当前页数
-    protected int mCurrentPage = 0;
+    protected int mCurrentPage = 1;
     //
     protected SwipeRefreshLayout mSwipeRefreshLayout;
 
