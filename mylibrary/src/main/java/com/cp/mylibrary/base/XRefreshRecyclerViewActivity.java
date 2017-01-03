@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 
 import com.cp.mylibrary.R;
 import com.cp.mylibrary.api.MyResponseHandler;
+import com.cp.mylibrary.app.Config;
 import com.cp.mylibrary.bean.MyEntity;
 import com.cp.mylibrary.pullto.XRefreshView;
 import com.cp.mylibrary.pullto.recyclerview.BaseRecyclerAdapter;
@@ -32,10 +33,6 @@ public class XRefreshRecyclerViewActivity<T extends MyEntity>  extends  MyBaseAc
     public   XRefreshView xRefreshView;
 
 
-    //当前页数
-    protected int mCurrentPage = 1;
-
-    public int PAGE_SIZE = 10;
 
 
      private BaseRecyclerAdapter mAdapter;
@@ -118,7 +115,7 @@ public class XRefreshRecyclerViewActivity<T extends MyEntity>  extends  MyBaseAc
      */
     public void onListViewRefresh()
     {
-        mCurrentPage = 0;
+        mCurrentPage = startPage;
 
         mAdapter.getData().clear();
         requestData();
@@ -138,18 +135,18 @@ public class XRefreshRecyclerViewActivity<T extends MyEntity>  extends  MyBaseAc
          */
     protected void requestData() {
         // 第一次加载的时候 ，转圈圈
-        if (mCurrentPage == 0)
+        if (mCurrentPage == startPage)
             //	mErrorLayout.setErrorType(EmptyLayout.NETWORK_LOADING);
 
             //第一次加载，并且没有网络
 
-            if (mCurrentPage == 0 && !NetWorkUtil.hasInternetConnected(this)&&mData.size()==0) {
+            if (mCurrentPage == startPage && !NetWorkUtil.hasInternetConnected(this)&&mData.size()==0) {
                 //设置整个界面
                 //	mErrorLayout.setErrorType(EmptyLayout.NETWORK_ERROR);
 
             }
         // 不是第一次加载，并且底下有部分数据了，要把欺adapter的状态设置为网络错误
-        if (mCurrentPage != 0 && !NetWorkUtil.hasInternetConnected(this)) {
+        if (mCurrentPage != startPage && !NetWorkUtil.hasInternetConnected(this)) {
            // mAdapter.setState(ListBaseAdapter.STATE_NETWORK_ERROR);
             mAdapter.notifyDataSetChanged();
         }
@@ -259,7 +256,7 @@ public class XRefreshRecyclerViewActivity<T extends MyEntity>  extends  MyBaseAc
 
 
     protected int getPageSize() {
-        return PAGE_SIZE;
+        return Config.PAGE_SIXE;
     }
 
     protected List<T> parseList(String is) {

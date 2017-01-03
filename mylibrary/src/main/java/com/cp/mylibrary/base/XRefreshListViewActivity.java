@@ -45,9 +45,6 @@ public class XRefreshListViewActivity<T extends MyEntity> extends MyBaseActivity
     private ParserTask mParserTask;
 
 
-    //当前页数
-    protected int mCurrentPage = 1;
-
     //列表的甜酸器
     public ListBaseAdapter mAdapter;
 
@@ -103,7 +100,7 @@ public class XRefreshListViewActivity<T extends MyEntity> extends MyBaseActivity
 
             @Override
             public void onClick(View v) {
-                mCurrentPage = 0;
+                mCurrentPage = startPage;
                 mState = STATE_REFRESH;
                 mErrorLayout.setErrorType(EmptyLayout.NETWORK_LOADING);
                 sendRequestData(true);
@@ -213,7 +210,7 @@ public class XRefreshListViewActivity<T extends MyEntity> extends MyBaseActivity
         // 设置顶部正在刷新
         mListView.setSelection(0);
         setSwipeRefreshLoadingState();
-        mCurrentPage = 0;
+        mCurrentPage = startPage;
         mState = STATE_REFRESH;
         sendRequestData(true);
     }
@@ -453,7 +450,7 @@ public class XRefreshListViewActivity<T extends MyEntity> extends MyBaseActivity
 
 
         mErrorLayout.setErrorType(EmptyLayout.HIDE_LAYOUT);
-        if (mCurrentPage == 0) {
+        if (mCurrentPage == startPage) {
             mAdapter.clear();
         }
 
@@ -467,7 +464,7 @@ public class XRefreshListViewActivity<T extends MyEntity> extends MyBaseActivity
         if ((mAdapter.getCount() + data.size()) == 0) {
             adapterState = ListBaseAdapter.STATE_EMPTY_ITEM;
         } else if (data.size() == 0
-                || (data.size() < getPageSize() && mCurrentPage == 0)) {
+                || (data.size() < getPageSize() && mCurrentPage == startPage)) {
             adapterState = ListBaseAdapter.STATE_NO_MORE;
             mAdapter.notifyDataSetChanged();
         } else {

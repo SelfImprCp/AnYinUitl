@@ -33,6 +33,18 @@ public class MyBaseActivity extends KJActivity {
     //为状态栏着色
   public SystemBarTintManager tintManager ;
 
+
+    //从哪一页面开始
+
+    public   int startPage = 1;
+
+    //当前页数
+    public int mCurrentPage = 1;
+
+
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
