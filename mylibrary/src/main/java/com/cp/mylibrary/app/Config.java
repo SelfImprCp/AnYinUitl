@@ -10,8 +10,8 @@ import java.io.File;
 public class Config {
      public static int PAGE_SIXE = 20;
 
-     public static final String WEICHAT_APPID = "wx5301e84c1bef747a";
-     public static final String WEICHAT_SECRET = "3672641fd138a398cd9b34fb9a92296a";
+     public static final String WEICHAT_APPID = "wx48dc03d81349300e";
+     public static final String WEICHAT_SECRET = "e59630f91fa3e42b0ee3b746e971f56a";
 
 
      public static final String SINA_APPID = "3182205453";
