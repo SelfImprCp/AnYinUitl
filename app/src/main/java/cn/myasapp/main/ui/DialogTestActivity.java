@@ -17,6 +17,7 @@ import com.cp.mylibrary.interf.ShareListener;
 import com.cp.mylibrary.pullto.XRefreshView;
 import com.cp.mylibrary.utils.LogCp;
 import com.cp.mylibrary.utils.ShowToastUtil;
+import com.cp.mylibrary.utils.StatusBarUtil;
 
 import org.kymjs.kjframe.ui.BindView;
 
@@ -54,6 +55,8 @@ public class DialogTestActivity extends BaseActivity {
         super.setRootView();
 
         setContentView(R.layout.activity_test_dialog);
+
+        StatusBarUtil.setColor(DialogTestActivity.this,getResources().getColor(R.color.base_color),50);
     }
 
     @Override
