@@ -122,10 +122,12 @@ public class AppUtils {
     }
 
 
-    /**Java 获取可变UUID
+    /**
+     * Java 获取可变UUID
+     *
      * @return
      */
-    private String getJavaMyUUID() {
+    public static String getJavaMyUUID() {
         UUID uuid = UUID.randomUUID();
         String uniqueId = uuid.toString();
 
@@ -133,13 +135,13 @@ public class AppUtils {
     }
 
 
-    private String getAndroidMyUUID(Context context){
+    public static String getAndroidMyUUID(Context context) {
         final TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         final String tmDevice, tmSerial, tmPhone, androidId;
         tmDevice = "" + tm.getDeviceId();
         tmSerial = "" + tm.getSimSerialNumber();
-        androidId = "" +  Settings.Secure.getString(context.getContentResolver(),android.provider.Settings.Secure.ANDROID_ID);
-        UUID deviceUuid = new UUID(androidId.hashCode(), ((long)tmDevice.hashCode() << 32) | tmSerial.hashCode());
+        androidId = "" + Settings.Secure.getString(context.getContentResolver(), android.provider.Settings.Secure.ANDROID_ID);
+        UUID deviceUuid = new UUID(androidId.hashCode(), ((long) tmDevice.hashCode() << 32) | tmSerial.hashCode());
         String uniqueId = deviceUuid.toString();
 
         return uniqueId;
