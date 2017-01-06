@@ -137,7 +137,7 @@ public class MyHttpClient {
 
         );
 
-        LogCp.d(LogCp.CP, MyHttpClient.class + " 请求URL：" + getAbsoluteApiUrl(partUrl)
+        LogCp.d(LogCp.CP, MyHttpClient.class + " 请求URL：" +   partUrl
 
         );
 
