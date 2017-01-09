@@ -70,8 +70,6 @@ public class MyBaseActivity extends KJActivity {
         //  android:clipToPadding="false"
         //透明状态栏
        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        //   StatusBarUtil.setColor(MyBaseActivity.this, Color.argb( 0, 227, 29, 26));
-
         //透明导航栏
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
 
@@ -85,7 +83,7 @@ public class MyBaseActivity extends KJActivity {
         tintManager.setStatusBarTintEnabled(true);
 
 
-        tintManager.setStatusBarTintResource(R.color.white_cp_util);
+        tintManager.setStatusBarTintResource(R.color.black_color_30);
 
 
 

@@ -30,7 +30,9 @@ public class ProgressWebView extends WebView {
 
         Drawable drawable = context.getResources().getDrawable(R.drawable.progress_bar_states);
         progressbar.setProgressDrawable(drawable);
-        addView(progressbar);
+
+      //  addView(progressbar);
+
          setWebViewClient(new MyWebViewClient(){});
         setWebChromeClient(new WebChromeClient());
 
