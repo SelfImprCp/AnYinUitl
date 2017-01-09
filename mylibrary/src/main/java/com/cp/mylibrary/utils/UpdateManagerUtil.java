@@ -234,8 +234,19 @@ public abstract class UpdateManagerUtil {
 		 */
 
 
+        String nextUpdate = "";
+
+        if (updateRes.isForceupdate())
+        {
+
+        }else
+        {
+            nextUpdate = "下次再说";
+        }
+
+
         simplecDialog = BasicDialog.versionDialog(mContext, "发现新版本:"+updateRes.getVersion(),
-                updateRes.getDesc(), "立即更新", "下次再说", new OnClickListener() {
+                updateRes.getDesc(), "立即更新", nextUpdate, new OnClickListener() {
 
                     @Override
                     public void onClick(View arg0) {
