@@ -11,6 +11,7 @@ import cn.myasapp.main.domian.SimpleBackPage;
 import cn.myasapp.main.ui.DialogTestActivity;
 import cn.myasapp.main.ui.GestureLockActivity;
 import cn.myasapp.main.ui.GestureVerifyActivity;
+import cn.myasapp.main.ui.HeadToolBarActivity;
 import cn.myasapp.main.ui.TestListViewRefreshActivity;
 import cn.myasapp.main.ui.SimpleBackActivity;
 import cn.myasapp.main.ui.TestActivity;
@@ -67,6 +68,12 @@ public class TestUIhelper {
     public static void showTesObjectsUitls(Context context) {
         OpenActivityUtil.getInstance().openActivity(context,TestObjectUtils.class);
     }
+
+    public static void showHeadToolBarActivity(Context context) {
+        OpenActivityUtil.getInstance().openActivity(context,HeadToolBarActivity.class);
+    }
+
+
 
 
 

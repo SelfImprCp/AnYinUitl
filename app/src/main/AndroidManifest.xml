@@ -65,6 +65,12 @@
 
 
 
+
+        <activity
+            android:name=".ui.HeadToolBarActivity"
+            android:label="测试滑动title变色"
+            android:screenOrientation="portrait" />
+
         <activity
             android:name=".ui.TextNetWorkUtils"
             android:label="测试网络"

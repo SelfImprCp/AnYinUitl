@@ -10,6 +10,7 @@ import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 
 import com.cp.mylibrary.R;
+import com.cp.mylibrary.utils.WebViewUitl;
 
 
 /**
@@ -33,19 +34,21 @@ public class ProgressWebView extends WebView {
          setWebViewClient(new MyWebViewClient(){});
         setWebChromeClient(new WebChromeClient());
 
-        WebSettings webSettings =  getSettings();
-        webSettings.setJavaScriptEnabled(true);
+//        WebSettings webSettings =  getSettings();
+//        webSettings.setJavaScriptEnabled(true);
+//
+//        webSettings.setDefaultTextEncodingName("utf-8");
+//        webSettings.setBuiltInZoomControls(true);// 支持缩放
+//        webSettings.setDisplayZoomControls(false);
+//        webSettings.setSupportZoom(true);
+//        webSettings.setDomStorageEnabled(true);
+//        webSettings.setDatabaseEnabled(true);
+//
+//        // 全屏显示
+//        webSettings.setLoadWithOverviewMode(true);
+//        webSettings.setUseWideViewPort(true);
 
-        webSettings.setDefaultTextEncodingName("utf-8");
-        webSettings.setBuiltInZoomControls(true);// 支持缩放
-        webSettings.setDisplayZoomControls(false);
-        webSettings.setSupportZoom(true);
-        webSettings.setDomStorageEnabled(true);
-        webSettings.setDatabaseEnabled(true);
-
-        // 全屏显示
-        webSettings.setLoadWithOverviewMode(true);
-        webSettings.setUseWideViewPort(true);
+        WebViewUitl.setWebViewSetting(this);
 
 
 

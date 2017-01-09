@@ -201,6 +201,11 @@
                 style="@style/test_textview_style"
                 android:text="  下载文件并显示，一般用在网页中  " />
 
+            <TextView
+                android:id="@+id/tible_scroll_color_text"
+
+                style="@style/test_textview_style"
+                android:text="   滑动scrollview title 变色 " />
 
 
         </LinearLayout>

@@ -26,10 +26,14 @@ public class WebViewUitl {
 // 开启 DOM storage API 功能
         webSettings.setDomStorageEnabled(true);
         webSettings.setDefaultTextEncodingName("utf-8");
-        webSettings.setCacheMode(WebSettings.LOAD_DEFAULT);
-        webSettings.setDomStorageEnabled(true);
+        //是否可以缩放
+        webSettings.setSupportZoom(true);
+        webSettings.setBuiltInZoomControls(true);
+
 
         webView.setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);
+
+
 
     }
 

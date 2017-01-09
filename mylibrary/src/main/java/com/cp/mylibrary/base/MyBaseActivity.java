@@ -3,6 +3,7 @@ package com.cp.mylibrary.base;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Window;
@@ -16,6 +17,7 @@ import com.cp.mylibrary.utils.ActivityManagerUtil;
 import com.cp.mylibrary.utils.AppUtils;
 import com.cp.mylibrary.utils.NetWorkUtil;
 import com.cp.mylibrary.utils.ShowToastUtil;
+import com.cp.mylibrary.utils.StatusBarUtil;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
 
 
@@ -67,12 +69,14 @@ public class MyBaseActivity extends KJActivity {
         //     android:fitsSystemWindows="true"
         //  android:clipToPadding="false"
         //透明状态栏
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+       getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        //   StatusBarUtil.setColor(MyBaseActivity.this, Color.argb( 0, 227, 29, 26));
+
         //透明导航栏
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
 
 
-        //只对api19以上版本有效
+      //  只对api19以上版本有效
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             setTranslucentStatus(true);
         }
@@ -81,8 +85,8 @@ public class MyBaseActivity extends KJActivity {
         tintManager.setStatusBarTintEnabled(true);
 
 
-//        tintManager.setStatusBarTintResource(R.color.white_cp_util);
-//
+        tintManager.setStatusBarTintResource(R.color.white_cp_util);
+
 
 
         EventBus.getDefault().register(this);

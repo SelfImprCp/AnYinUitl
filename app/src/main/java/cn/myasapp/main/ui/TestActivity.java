@@ -125,6 +125,10 @@ public class TestActivity extends BaseActivity {
     private TextView download_file_show_text;
 
 
+    @BindView(id = R.id.tible_scroll_color_text, click = true)
+    private TextView tible_scroll_color_text;
+
+
     @Override
     public void setRootView() {
 
@@ -394,6 +398,12 @@ public class TestActivity extends BaseActivity {
                 FileUtil fileUtil = new FileUtil(TestActivity.this);
                 fileUtil.showFileForWebView(url);
 
+                break;
+
+
+            case R.id.tible_scroll_color_text:
+
+                TestUIhelper.showHeadToolBarActivity(TestActivity.this);
                 break;
 
 
