@@ -76,6 +76,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/dialog_cances_bg"
                 android:text="取消"
+
                 android:textColor="@color/black_color_30"
                 android:textSize="@dimen/text_size_15" />
 
