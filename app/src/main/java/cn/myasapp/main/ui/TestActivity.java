@@ -133,6 +133,8 @@ public class TestActivity extends BaseActivity {
     public void setRootView() {
 
         setContentView(R.layout.activity_test);
+
+
     }
 
 
@@ -180,7 +182,12 @@ public class TestActivity extends BaseActivity {
 
             // 测试 ObjectUtils
             case R.id.object_utils_test:
+
+
                 TestUIhelper.showTesObjectsUitls(this);
+
+                overridePendingTransition(R.anim.screen_zoom_in, R.anim.screen_zoom_out);
+
 
                 break;
 
