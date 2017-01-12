@@ -76,6 +76,7 @@ public abstract class CommonAdapter<T> extends
 		holder.updatePosition(position);
 		convert(holder, mDatas.get(position),position);
 
+
 	}
 
 	/**
