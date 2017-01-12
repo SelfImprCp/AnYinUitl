@@ -129,6 +129,12 @@ public class TestActivity extends BaseActivity {
     private TextView tible_scroll_color_text;
 
 
+
+
+
+    @BindView(id = R.id.loading_anim, click = true)
+    private TextView loading_anim;
+
     @Override
     public void setRootView() {
 
@@ -413,6 +419,10 @@ public class TestActivity extends BaseActivity {
                 TestUIhelper.showHeadToolBarActivity(TestActivity.this);
                 break;
 
+            case R.id.loading_anim:
+
+                TestUIhelper.showLoadingAnimActivity(TestActivity.this);
+                break;
 
         }
 

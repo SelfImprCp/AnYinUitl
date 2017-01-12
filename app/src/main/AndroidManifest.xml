@@ -172,6 +172,11 @@
             android:windowSoftInputMode="adjustResize"></activity>
 
 
+        <activity
+            android:name=".ui.LoadingAnimActivity"
+
+            android:windowSoftInputMode="adjustResize"></activity>
+
 
 
 

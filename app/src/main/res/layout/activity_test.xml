@@ -208,6 +208,15 @@
                 android:text="   滑动scrollview title 变色 " />
 
 
+
+            <TextView
+                android:id="@+id/loading_anim"
+
+                style="@style/test_textview_style"
+                android:text="   测试加载动画   " />
+
+
+
         </LinearLayout>
     </com.cp.mylibrary.custom.CPScrollView>
 

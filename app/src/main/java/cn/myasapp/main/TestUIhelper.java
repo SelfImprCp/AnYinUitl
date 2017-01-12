@@ -12,6 +12,7 @@ import cn.myasapp.main.ui.DialogTestActivity;
 import cn.myasapp.main.ui.GestureLockActivity;
 import cn.myasapp.main.ui.GestureVerifyActivity;
 import cn.myasapp.main.ui.HeadToolBarActivity;
+import cn.myasapp.main.ui.LoadingAnimActivity;
 import cn.myasapp.main.ui.TestListViewRefreshActivity;
 import cn.myasapp.main.ui.SimpleBackActivity;
 import cn.myasapp.main.ui.TestActivity;
@@ -73,6 +74,10 @@ public class TestUIhelper {
         OpenActivityUtil.getInstance().openActivity(context,HeadToolBarActivity.class);
     }
 
+
+    public static void showLoadingAnimActivity(Context context) {
+        OpenActivityUtil.getInstance().openActivity(context,LoadingAnimActivity.class);
+    }
 
 
 
