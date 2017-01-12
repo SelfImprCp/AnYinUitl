@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.OvershootInterpolator;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -21,6 +22,9 @@ import com.cp.mylibrary.bean.MyEntity;
 import com.cp.mylibrary.utils.LogCp;
 import com.cp.mylibrary.utils.NetWorkUtil;
 import com.cp.mylibrary.utils.StringUtils;
+import com.nineoldandroids.view.ViewPropertyAnimator;
+
+import org.kymjs.kjframe.widget.ViewHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -279,6 +283,18 @@ public abstract class ListBaseAdapter<T extends MyEntity> extends BaseAdapter {
                 getItemLayoutId(), position);
 
         convert(viewHolder, getItem(position),position);
+
+
+
+        View itemView = viewHolder.getConvertView();
+
+        ViewHelper.setScaleX(itemView,0.8f);
+        ViewHelper.setScaleY(itemView,0.8f);
+        ViewPropertyAnimator.animate(itemView).scaleX(1).setDuration(350).setInterpolator(new OvershootInterpolator()).start();
+        ViewPropertyAnimator.animate(itemView).scaleY(1).setDuration(350).setInterpolator(new OvershootInterpolator()).start();
+
+
+
         return viewHolder.getConvertView();
 
 
