@@ -290,8 +290,8 @@ public abstract class ListBaseAdapter<T extends MyEntity> extends BaseAdapter {
 
         ViewHelper.setScaleX(itemView,0.8f);
         ViewHelper.setScaleY(itemView,0.8f);
-        ViewPropertyAnimator.animate(itemView).scaleX(1).setDuration(2000).setInterpolator(new OvershootInterpolator()).start();
-        ViewPropertyAnimator.animate(itemView).scaleY(1).setDuration(2000).setInterpolator(new OvershootInterpolator()).start();
+        ViewPropertyAnimator.animate(itemView).scaleX(1).setDuration(1500).setInterpolator(new OvershootInterpolator()).start();
+        ViewPropertyAnimator.animate(itemView).scaleY(1).setDuration(1500).setInterpolator(new OvershootInterpolator()).start();
 
 
 

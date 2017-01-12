@@ -14,7 +14,8 @@
 
     <color name="black_color_30">#000000</color>
     <color name="text_light">#3f000000</color>
-
+    <!--  程序的主色调-->
+    <color name="bg_color_f7f7f8">#F7F7F8</color>
     <!-- 下拉刷新时，颜色值 -->
     <color name="swiperefresh_color1">#ff00ddff</color>
     <color name="swiperefresh_color2">#ffffbb33</color>
