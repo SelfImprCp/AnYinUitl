@@ -82,8 +82,6 @@ public abstract class CommonAdapter<T> extends
 
 
 
-
-
 	}
 
 	/**
