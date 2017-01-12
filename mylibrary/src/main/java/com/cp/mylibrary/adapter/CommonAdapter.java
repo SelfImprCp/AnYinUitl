@@ -77,6 +77,8 @@ public abstract class CommonAdapter<T> extends
 		convert(holder, mDatas.get(position),position);
 
 
+
+
 	}
 
 	/**
