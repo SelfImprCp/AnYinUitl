@@ -13,6 +13,7 @@ import cn.myasapp.main.ui.GestureLockActivity;
 import cn.myasapp.main.ui.GestureVerifyActivity;
 import cn.myasapp.main.ui.HeadToolBarActivity;
 import cn.myasapp.main.ui.LoadingAnimActivity;
+import cn.myasapp.main.ui.TestDrawerLayout;
 import cn.myasapp.main.ui.TestListViewRefreshActivity;
 import cn.myasapp.main.ui.SimpleBackActivity;
 import cn.myasapp.main.ui.TestActivity;
@@ -131,6 +132,9 @@ public class TestUIhelper {
         OpenActivityUtil.getInstance().openActivity(context,TestScrollViewRefreshActivity.class);
     }
 
+    public static void showTestDrawerLayout(Context context) {
+        OpenActivityUtil.getInstance().openActivity(context,TestDrawerLayout.class);
+    }
 
     public static void showXRefreshListViewActivity(Context context) {
         OpenActivityUtil.getInstance().openActivity(context,    TestRecyclerRefreshActivity

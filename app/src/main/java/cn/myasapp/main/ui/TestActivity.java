@@ -129,6 +129,9 @@ public class TestActivity extends BaseActivity {
     private TextView tible_scroll_color_text;
 
 
+    @BindView(id = R.id.drawer_layout, click = true)
+    private TextView drawer_layout;
+
 
 
 
@@ -423,6 +426,12 @@ public class TestActivity extends BaseActivity {
 
                 TestUIhelper.showLoadingAnimActivity(TestActivity.this);
                 break;
+
+
+            case R.id.drawer_layout:
+                TestUIhelper.showTestDrawerLayout(TestActivity.this);
+
+                 break;
 
         }
 

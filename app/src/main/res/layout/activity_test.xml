@@ -215,6 +215,11 @@
                 style="@style/test_textview_style"
                 android:text="   测试加载动画   " />
 
+            <TextView
+                android:id="@+id/drawer_layout"
+
+                style="@style/test_textview_style"
+                android:text="   测试侧边栏   " />
 
 
         </LinearLayout>
