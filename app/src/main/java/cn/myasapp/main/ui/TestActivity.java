@@ -138,6 +138,14 @@ public class TestActivity extends BaseActivity {
     @BindView(id = R.id.loading_anim, click = true)
     private TextView loading_anim;
 
+
+
+
+
+    @BindView(id = R.id.flowlayout_layout, click = true)
+    private TextView flowlayout_layout;
+
+
     @Override
     public void setRootView() {
 
@@ -192,6 +200,10 @@ public class TestActivity extends BaseActivity {
             // 测试 ObjectUtils
             case R.id.object_utils_test:
 
+
+
+
+                
 
                 TestUIhelper.showTesObjectsUitls(this);
 
@@ -432,6 +444,17 @@ public class TestActivity extends BaseActivity {
                 TestUIhelper.showTestDrawerLayout(TestActivity.this);
 
                  break;
+
+             // 测试流布局
+            case R.id.flowlayout_layout:
+                TestUIhelper.showFlowLayoutActivity(TestActivity.this);
+
+                break;
+
+
+
+
+
 
         }
 
