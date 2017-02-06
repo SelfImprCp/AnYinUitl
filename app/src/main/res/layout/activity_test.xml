@@ -230,6 +230,14 @@
                 android:text="   测试流布局   " />
 
 
+
+            <TextView
+                android:id="@+id/snackbar_layout"
+
+                style="@style/test_textview_style"
+                android:text="   测试Snackbar  " />
+
+
         </LinearLayout>
     </com.cp.mylibrary.custom.CPScrollView>
 

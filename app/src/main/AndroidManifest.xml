@@ -194,9 +194,23 @@
 
 
         <activity
+            android:name=".ui.SnackbarActivity"
+
+            android:windowSoftInputMode="adjustResize"></activity>
+
+
+
+
+
+
+
+        <activity
             android:name=".wxapi.WXEntryActivity"
             android:screenOrientation="portrait" >
         </activity>
+
+
+
 
 
 

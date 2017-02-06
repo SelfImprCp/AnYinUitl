@@ -133,13 +133,13 @@ public class TestActivity extends BaseActivity {
     private TextView drawer_layout;
 
 
-
-
     @BindView(id = R.id.loading_anim, click = true)
     private TextView loading_anim;
 
 
-
+    @BindView(id = R.id.snackbar_layout
+            , click = true)
+    private TextView snackbar_layout;
 
 
     @BindView(id = R.id.flowlayout_layout, click = true)
@@ -200,10 +200,6 @@ public class TestActivity extends BaseActivity {
             // 测试 ObjectUtils
             case R.id.object_utils_test:
 
-
-
-
-                
 
                 TestUIhelper.showTesObjectsUitls(this);
 
@@ -443,17 +439,19 @@ public class TestActivity extends BaseActivity {
             case R.id.drawer_layout:
                 TestUIhelper.showTestDrawerLayout(TestActivity.this);
 
-                 break;
+                break;
 
-             // 测试流布局
+            // 测试流布局
             case R.id.flowlayout_layout:
                 TestUIhelper.showFlowLayoutActivity(TestActivity.this);
 
                 break;
 
+            //
+            case R.id.snackbar_layout:
+                TestUIhelper.showSnackbarActivity(TestActivity.this);
 
-
-
+                break;
 
 
         }

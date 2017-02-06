@@ -36,6 +36,7 @@ import java.io.File;
  *
  * @author FireAnt（http://my.oschina.net/LittleDY）
  * @version 创建时间：2014年11月18日 下午4:21:00
+ *
  */
 
 public abstract class UpdateManagerUtil {
@@ -158,7 +159,7 @@ public abstract class UpdateManagerUtil {
      * 检查 是否有新版本
      *
      * @param updateRes
-     * @return
+     * @return`
      */
     public boolean haveNew(Context context, UpdateRes updateRes, String currentVersion) {
         if (updateRes == null) {
@@ -190,6 +191,7 @@ public abstract class UpdateManagerUtil {
 
 
     /**
+     *
      * 有新版本， 不弹出是否更新的弹框
      *
      * @param updateRes
@@ -236,16 +238,14 @@ public abstract class UpdateManagerUtil {
 
         String nextUpdate = "";
 
-        if (updateRes.isForceupdate())
-        {
+        if (updateRes.isForceupdate()) {
 
-        }else
-        {
+        } else {
             nextUpdate = "下次再说";
         }
 
 
-        simplecDialog = BasicDialog.versionDialog(mContext, "发现新版本:"+updateRes.getVersion(),
+        simplecDialog = BasicDialog.versionDialog(mContext, "发现新版本:" + updateRes.getVersion(),
                 updateRes.getDesc(), "立即更新", nextUpdate, new OnClickListener() {
 
                     @Override
@@ -270,8 +270,6 @@ public abstract class UpdateManagerUtil {
                 }).getConfigDialog();
 
         simplecDialog.show();
-
-
 
 
     }
@@ -381,7 +379,7 @@ public abstract class UpdateManagerUtil {
                 binder.addCallback(callback);
                 binder.start();
 
-                LogCp.i(LogCp.CP,  "   启动下载  版本   "  );
+                LogCp.i(LogCp.CP, "   启动下载  版本   ");
 
 
             }

@@ -88,7 +88,6 @@ public class TestFlowLayoutActivity extends MyBaseActivity {
 
         setContentView(R.layout.activity_flow_test);
 
-
     }
 
     @Override

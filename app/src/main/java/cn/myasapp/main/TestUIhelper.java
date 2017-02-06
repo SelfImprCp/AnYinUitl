@@ -13,6 +13,7 @@ import cn.myasapp.main.ui.GestureLockActivity;
 import cn.myasapp.main.ui.GestureVerifyActivity;
 import cn.myasapp.main.ui.HeadToolBarActivity;
 import cn.myasapp.main.ui.LoadingAnimActivity;
+import cn.myasapp.main.ui.SnackbarActivity;
 import cn.myasapp.main.ui.TestDrawerLayout;
 import cn.myasapp.main.ui.TestFlowLayoutActivity;
 import cn.myasapp.main.ui.TestListViewRefreshActivity;
@@ -163,6 +164,10 @@ public class TestUIhelper {
 
         OpenActivityUtil.getInstance().openActivity(context,    GestureVerifyActivity
                 .class,bundle);
+    }
+    public static void showSnackbarActivity(Context context) {
+        OpenActivityUtil.getInstance().openActivity(context,    SnackbarActivity
+                .class);
     }
 
 
