@@ -186,6 +186,17 @@ public class TestUIhelper {
     }
 
 
+    /**
+     *  test view
+     * @param context
+     */
+    public static void showTestTabLayoutViewPage(Context context   ) {
+        showSimpleBack(context, SimpleBackPage.TABLAYOUT_VIEWPAGE);
+
+
+    }
+
+
 
     // ===============================以下代码勿改动======================================//
 

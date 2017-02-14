@@ -146,6 +146,10 @@ public class TestActivity extends BaseActivity {
     private TextView flowlayout_layout;
 
 
+
+    @BindView(id = R.id.tablayout_viewpage, click = true)
+    private TextView tablayout_viewpage;
+
     @Override
     public void setRootView() {
 
@@ -292,6 +296,14 @@ public class TestActivity extends BaseActivity {
 //
 //                LogCp.i(LogCp.CP,TestActivity.class + "生成的json：" + gson);
 
+                break;
+
+
+
+            case R.id.tablayout_viewpage:
+
+
+                 TestUIhelper.showTestTabLayoutViewPage(this);
                 break;
 
 

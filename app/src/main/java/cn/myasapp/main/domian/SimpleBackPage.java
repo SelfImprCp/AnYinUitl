@@ -4,6 +4,7 @@ package cn.myasapp.main.domian;
 
 import com.cp.mylibrary.utils.LogCp;
 
+import cn.myasapp.main.fragment.TestTabLayoutViewPage;
 import cn.myasapp.main.ui.TestFragment;
 
 
@@ -15,10 +16,13 @@ import cn.myasapp.main.ui.TestFragment;
  */
 public enum SimpleBackPage {
 
-	VIEW_PAGE(1, TestFragment.class) ;
+	VIEW_PAGE(1, TestFragment.class),
+	TABLAYOUT_VIEWPAGE(2, TestTabLayoutViewPage.class)
+
+	;
 
 
-	
+
 	
 
 

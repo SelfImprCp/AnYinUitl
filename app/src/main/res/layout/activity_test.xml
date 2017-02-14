@@ -118,6 +118,13 @@
                 android:text="    测viewpage fragment   " />
 
             <TextView
+                android:id="@+id/tablayout_viewpage"
+
+                style="@style/test_textview_style"
+                android:text="    测TabLayout + ViewPager   " />
+
+
+            <TextView
                 android:id="@+id/pullto_test"
 
                 style="@style/test_textview_style"
