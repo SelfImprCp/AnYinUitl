@@ -118,4 +118,8 @@ public class FullyGridLayoutManager extends GridLayoutManager {
             }
         }
     }
+    @Override
+    public boolean canScrollVertically() {
+        return false;
+    }
 }

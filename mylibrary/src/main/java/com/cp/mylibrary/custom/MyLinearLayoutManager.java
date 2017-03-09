@@ -104,4 +104,8 @@ public class MyLinearLayoutManager extends LinearLayoutManager {
         } finally {
         }
     }
+    @Override
+    public boolean canScrollVertically() {
+        return false;
+    }
 }
