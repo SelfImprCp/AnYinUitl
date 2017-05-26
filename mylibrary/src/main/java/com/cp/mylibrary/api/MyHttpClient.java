@@ -174,7 +174,9 @@ public class MyHttpClient {
 
         );
 
+        LogCp.d(LogCp.CP, MyHttpClient.class + " 请求json：" +params.getJsonParams()
 
+        );
 
     }
 
