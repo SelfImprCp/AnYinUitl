@@ -29,6 +29,8 @@ public class ImagePreviewActivity extends MyBaseActivity {
 
 
 
+
+
 	public static final String BUNDLE_KEY_IMAGES = "bundle_key_images";
 	private static final String BUNDLE_KEY_INDEX = "bundle_key_index";
 	private String[] mImageUrls;
