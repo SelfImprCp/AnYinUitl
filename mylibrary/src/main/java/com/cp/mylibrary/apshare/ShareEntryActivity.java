@@ -1,6 +1,6 @@
 package com.cp.mylibrary.apshare;
 
-import android.app.Activity;
+
 
 import com.umeng.socialize.media.ShareCallbackActivity;
 
