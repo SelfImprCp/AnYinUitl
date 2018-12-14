@@ -78,7 +78,10 @@
             android:excludeFromRecents="true"
             android:theme="@style/Theme.UMDefault" />
 
-
+        <activity
+            android:name="com.umeng.socialize.media.WBShareCallBackActivity"
+            android:excludeFromRecents="true"
+            android:theme="@style/Theme.UMDefault" />
         <!-- 查看大图-->
         <activity
             android:name=".activity.ImagePreviewActivity"
