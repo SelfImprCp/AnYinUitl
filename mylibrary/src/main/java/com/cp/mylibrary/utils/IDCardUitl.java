@@ -547,10 +547,17 @@ public class IDCardUitl {
             return "";
         }
         if (value.length() == 15 || value.length() == 18) {
-            String lastValue = value.substring(value.length() - 1, value.length());
+
+
+
+            String lastValue = value.substring(value.length() - 2, value.length()-1);
+
+             LogCp.i(LogCp.CP,"身份证判别号：" + lastValue);
             int sex;
             if (lastValue.trim().toLowerCase().equals("x") || lastValue.trim().toLowerCase().equals("e")) {
                 return "男";
+
+
             } else {
                 sex = Integer.parseInt(lastValue) % 2;
                 return sex == 0 ? "女" : "男";

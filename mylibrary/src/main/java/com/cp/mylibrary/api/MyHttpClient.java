@@ -1,5 +1,6 @@
 package com.cp.mylibrary.api;
 
+import com.cp.mylibrary.app.Config;
 import com.cp.mylibrary.utils.LogCp;
 
 import org.kymjs.kjframe.KJHttp;
@@ -14,34 +15,58 @@ public class MyHttpClient {
     // public   static String HOST = "www.ailibuli.cn";
 
 
-    public static String API_URL = "";
 
 
-    public static KJHttp client;
 
-    public static String Cookie = "";
+    public static MyHttpClient uitl;
+
+    public static MyHttpClient getInstance() {
+        if (uitl == null) {
+            uitl = new MyHttpClient();
+        }
+
+        return uitl;
+    }
+
+    public String API_URL = "";
+
+
+    public KJHttp client;
+
+    public String Cookie = "";
+
+
+    public HttpConfig httpConfig;
 
 
     /**
      *
      */
-    public static void initHttp(String host) {
+    public void initHttp(String host) {
 
-        API_URL = "https://" + host + "/";
+
+        API_URL = host + "/";
 
         // 初始化网络请求
-        HttpConfig httpConfig = new HttpConfig();
+
+
+        if (httpConfig == null)
+
+            httpConfig = new HttpConfig();
+
+
         httpConfig.TIMEOUT = 5000 * 5;
 
+        if (client == null)
+            client = new KJHttp();
 
-        client = new KJHttp();
         client.setConfig(httpConfig);
 
 
     }
 
 
-    public static KJHttp getHttpClient() {
+    public KJHttp getHttpClient() {
         return client;
     }
 
@@ -53,7 +78,7 @@ public class MyHttpClient {
      * @param handler
      */
 
-    public static void get(String partUrl, MyResponseHandler handler) {
+    public void get(String partUrl, MyResponseHandler handler) {
         client.get(getAbsoluteApiUrl(partUrl), handler);
 
 
@@ -73,8 +98,8 @@ public class MyHttpClient {
      * @param handler
      */
 
-    public static void get(String partUrl, MyHttpParams params,
-                           MyResponseHandler handler) {
+    public void get(String partUrl, MyHttpParams params,
+                    MyResponseHandler handler) {
         params.putHeaders("cookie", Cookie);
 
         client.get(getAbsoluteApiUrl(partUrl), params, handler);
@@ -98,8 +123,8 @@ public class MyHttpClient {
      * @param params
      * @param handler
      */
-    public static void post(String partUrl, MyHttpParams params,
-                            MyResponseHandler handler) {
+    public void post(String partUrl, MyHttpParams params,
+                     MyResponseHandler handler) {
         params.putHeaders("cookie", Cookie);
 
 
@@ -123,62 +148,7 @@ public class MyHttpClient {
 
 
     }
-    /**
-     * 完整url访问
-     * @param partUrl
-     * @param handler
-     */
 
-    public static void getAbsoluteUrl(String partUrl, MyResponseHandler handler) {
-        client.get( partUrl, handler);
-
-
-        LogCp.d(LogCp.CP, MyHttpClient.class + " 请求方式：GET 无参"
-
-        );
-
-        LogCp.d(LogCp.CP, MyHttpClient.class + " 请求URL：" +   partUrl
-
-        );
-
-    }
-
-
-
-    /**
-     * 完整url访问
-     * @param url
-     * @param params
-     * @param handler
-     */
-    public static void postAbsoluteUrl(String url, MyHttpParams params,
-                                       MyResponseHandler handler) {
-        params.putHeaders("cookie",Cookie);
-
-
-        client.post(url  , params, handler);
-
-        LogCp.d(LogCp.CP, MyHttpClient.class + " 请求方式：POST"
-
-        );
-        LogCp.d(LogCp.CP, MyHttpClient.class + " 请求参数 ："
-                + params.getUrlParams().toString()
-
-        );
-        LogCp.d(LogCp.CP, MyHttpClient.class + " 请求头  ："
-                +  params.getHeaders()
-
-        );
-
-        LogCp.d(LogCp.CP, MyHttpClient.class + " 请求URL：" +url
-
-        );
-
-        LogCp.d(LogCp.CP, MyHttpClient.class + " 请求json：" +params.getJsonParams()
-
-        );
-
-    }
 
     /**
      * post 向服务器提交 json
@@ -187,8 +157,8 @@ public class MyHttpClient {
      * @param jsonStr
      * @param responseHandler
      */
-    public static void postJsonUpServer(String url,
-                                        String jsonStr, MyResponseHandler responseHandler) {
+    public void postJsonUpServer(String url,
+                                 String jsonStr, MyResponseHandler responseHandler) {
 
 
         MyHttpParams params = new MyHttpParams();
@@ -205,15 +175,70 @@ public class MyHttpClient {
     }
 
 
-    public static String getAbsoluteApiUrl(String partUrl) {
+    public String getAbsoluteApiUrl(String partUrl) {
         //   String url = String.format(API_URL, partUrl);
         String url = API_URL + partUrl;
         //  Log.d("BASE_CLIENT", "request:" + url);
         return url;
     }
 
+    /**
+     * 完整url访问
+     *
+     * @param partUrl
+     * @param handler
+     */
 
-    public static String getApiUrl() {
+    public void getAbsoluteUrl(String partUrl, MyResponseHandler handler) {
+        client.get(partUrl, handler);
+
+
+        LogCp.d(LogCp.CP, MyHttpClient.class + " 请求方式：GET 无参"
+
+        );
+
+        LogCp.d(LogCp.CP, MyHttpClient.class + " 请求URL：" + partUrl
+
+        );
+
+    }
+
+    /**
+     * 完整url访问
+     *
+     * @param url
+     * @param handler
+     */
+    public void postAbsoluteUrl(String url, MyHttpParams params,
+                                MyResponseHandler handler) {
+        params.putHeaders("cookie", Cookie);
+
+
+        client.post(url, params, handler);
+
+        LogCp.d(LogCp.CP, MyHttpClient.class + " 请求方式：POST"
+
+        );
+        LogCp.d(LogCp.CP, MyHttpClient.class + " 请求参数 ："
+                + params.getUrlParams().toString()
+
+        );
+        LogCp.d(LogCp.CP, MyHttpClient.class + " 请求头  ："
+                + params.getHeaders()
+
+        );
+
+        LogCp.d(LogCp.CP, MyHttpClient.class + " 请求URL：" + url
+
+        );
+
+        LogCp.d(LogCp.CP, MyHttpClient.class + " 请求json：" + params.getJsonParams()
+
+        );
+
+    }
+
+    public String getApiUrl() {
         return API_URL;
     }
 

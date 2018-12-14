@@ -73,14 +73,8 @@ public abstract class CommonAdapter<T> extends
 	@Override
 	public void onBindViewHolder(ViewHolder holder, int position)
 	{
-
-
-
 		holder.updatePosition(position);
 		convert(holder, mDatas.get(position),position);
-
-
-
 
 	}
 

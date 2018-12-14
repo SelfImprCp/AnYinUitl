@@ -65,12 +65,6 @@
 
 
 
-
-        <activity
-            android:name=".ui.HeadToolBarActivity"
-            android:label="测试滑动title变色"
-            android:screenOrientation="portrait" />
-
         <activity
             android:name=".ui.TextNetWorkUtils"
             android:label="测试网络"
@@ -172,45 +166,20 @@
             android:windowSoftInputMode="adjustResize"></activity>
 
 
-        <activity
-            android:name=".ui.LoadingAnimActivity"
-
-            android:windowSoftInputMode="adjustResize"></activity>
-
-
 
 
         <activity
-            android:name=".ui.TestFlowLayoutActivity"
-
-            android:windowSoftInputMode="adjustResize"></activity>
-
-
-        <activity
-            android:name=".ui.TestDrawerLayout"
-
-            android:windowSoftInputMode="adjustResize"></activity>
-
+            android:name="com.umeng.socialize.editorpage.ShareActivity"
+            android:excludeFromRecents="true"
+            android:theme="@style/Theme.UMDefault" />
 
 
         <activity
-            android:name=".ui.SnackbarActivity"
-
-            android:windowSoftInputMode="adjustResize"></activity>
-
-
-
-
-
-
-
-        <activity
-            android:name=".wxapi.WXEntryActivity"
-            android:screenOrientation="portrait" >
-        </activity>
-
-
-
+            android:name="cn.myasapp.main.weixin.callback.WXEntryActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
 
 

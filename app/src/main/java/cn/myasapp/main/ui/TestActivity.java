@@ -14,6 +14,7 @@ import com.cp.mylibrary.city.ScrollerNumberPicker;
 import com.cp.mylibrary.utils.AreaParserUitl;
 import com.cp.mylibrary.utils.DateTimePickDialogUtil;
 import com.cp.mylibrary.utils.FileUtil;
+import com.cp.mylibrary.utils.IDCardUitl;
 import com.cp.mylibrary.utils.LogCp;
 import com.cp.mylibrary.utils.StringUtils;
 
@@ -125,36 +126,20 @@ public class TestActivity extends BaseActivity {
     private TextView download_file_show_text;
 
 
-    @BindView(id = R.id.tible_scroll_color_text, click = true)
-    private TextView tible_scroll_color_text;
-
-
-    @BindView(id = R.id.drawer_layout, click = true)
-    private TextView drawer_layout;
-
-
-    @BindView(id = R.id.loading_anim, click = true)
-    private TextView loading_anim;
-
-
-    @BindView(id = R.id.snackbar_layout
-            , click = true)
-    private TextView snackbar_layout;
-
-
-    @BindView(id = R.id.flowlayout_layout, click = true)
-    private TextView flowlayout_layout;
-
-
-
-    @BindView(id = R.id.tablayout_viewpage, click = true)
-    private TextView tablayout_viewpage;
-
     @Override
     public void setRootView() {
 
         setContentView(R.layout.activity_test);
 
+
+
+
+
+
+
+//        IDCardUitl idCardUitl = new IDCardUitl();
+//        String stringSex = idCardUitl.getSexForID("440111199507183369");
+//        LogCp.i(LogCp.CP, TestActivity.class + " 是否为 性别 ::" + stringSex);
 
     }
 
@@ -203,12 +188,7 @@ public class TestActivity extends BaseActivity {
 
             // 测试 ObjectUtils
             case R.id.object_utils_test:
-
-
                 TestUIhelper.showTesObjectsUitls(this);
-
-                overridePendingTransition(R.anim.screen_zoom_in, R.anim.screen_zoom_out);
-
 
                 break;
 
@@ -296,14 +276,6 @@ public class TestActivity extends BaseActivity {
 //
 //                LogCp.i(LogCp.CP,TestActivity.class + "生成的json：" + gson);
 
-                break;
-
-
-
-            case R.id.tablayout_viewpage:
-
-
-                 TestUIhelper.showTestTabLayoutViewPage(this);
                 break;
 
 
@@ -401,9 +373,9 @@ public class TestActivity extends BaseActivity {
 
 
                         String strCounty = counyPicker.getSelectedText();
-                        String countyID = counyPicker.getSelectedCountyID(cityID, strCounty);
+//                        String countyID = counyPicker.getSelectedCountyID(cityID, strCounty);
 
-                        LogCp.i(LogCp.CP, TestActivity.class + "选择的省ID：" + provinceID + ",,选择的市ID：" + cityID + ",,选择的区ID：" + countyID);
+//                        LogCp.i(LogCp.CP, TestActivity.class + "选择的省ID：" + provinceID + ",,选择的市ID：" + cityID + ",,选择的区ID：" + countyID);
 
                     }
                 });
@@ -433,35 +405,6 @@ public class TestActivity extends BaseActivity {
                 String url = "http://47.90.23.136:8012/js/ueditor/net/upload/file/20161209/6361688910084474983115143.pdf";
                 FileUtil fileUtil = new FileUtil(TestActivity.this);
                 fileUtil.showFileForWebView(url);
-
-                break;
-
-
-            case R.id.tible_scroll_color_text:
-
-                TestUIhelper.showHeadToolBarActivity(TestActivity.this);
-                break;
-
-            case R.id.loading_anim:
-
-                TestUIhelper.showLoadingAnimActivity(TestActivity.this);
-                break;
-
-
-            case R.id.drawer_layout:
-                TestUIhelper.showTestDrawerLayout(TestActivity.this);
-
-                break;
-
-            // 测试流布局
-            case R.id.flowlayout_layout:
-                TestUIhelper.showFlowLayoutActivity(TestActivity.this);
-
-                break;
-
-            //
-            case R.id.snackbar_layout:
-                TestUIhelper.showSnackbarActivity(TestActivity.this);
 
                 break;
 

@@ -11,11 +11,6 @@ import cn.myasapp.main.domian.SimpleBackPage;
 import cn.myasapp.main.ui.DialogTestActivity;
 import cn.myasapp.main.ui.GestureLockActivity;
 import cn.myasapp.main.ui.GestureVerifyActivity;
-import cn.myasapp.main.ui.HeadToolBarActivity;
-import cn.myasapp.main.ui.LoadingAnimActivity;
-import cn.myasapp.main.ui.SnackbarActivity;
-import cn.myasapp.main.ui.TestDrawerLayout;
-import cn.myasapp.main.ui.TestFlowLayoutActivity;
 import cn.myasapp.main.ui.TestListViewRefreshActivity;
 import cn.myasapp.main.ui.SimpleBackActivity;
 import cn.myasapp.main.ui.TestActivity;
@@ -73,16 +68,6 @@ public class TestUIhelper {
         OpenActivityUtil.getInstance().openActivity(context,TestObjectUtils.class);
     }
 
-    public static void showHeadToolBarActivity(Context context) {
-        OpenActivityUtil.getInstance().openActivity(context,HeadToolBarActivity.class);
-    }
-
-
-    public static void showLoadingAnimActivity(Context context) {
-        OpenActivityUtil.getInstance().openActivity(context,LoadingAnimActivity.class);
-    }
-
-
 
 
 
@@ -134,16 +119,6 @@ public class TestUIhelper {
         OpenActivityUtil.getInstance().openActivity(context,TestScrollViewRefreshActivity.class);
     }
 
-    public static void showTestDrawerLayout(Context context) {
-        OpenActivityUtil.getInstance().openActivity(context,TestDrawerLayout.class);
-    }
-
-
-    public static void showFlowLayoutActivity(Context context) {
-        OpenActivityUtil.getInstance().openActivity(context,TestFlowLayoutActivity.class);
-    }
-
-
 
     public static void showXRefreshListViewActivity(Context context) {
         OpenActivityUtil.getInstance().openActivity(context,    TestRecyclerRefreshActivity
@@ -165,10 +140,6 @@ public class TestUIhelper {
         OpenActivityUtil.getInstance().openActivity(context,    GestureVerifyActivity
                 .class,bundle);
     }
-    public static void showSnackbarActivity(Context context) {
-        OpenActivityUtil.getInstance().openActivity(context,    SnackbarActivity
-                .class);
-    }
 
 
 
@@ -181,17 +152,6 @@ public class TestUIhelper {
      */
     public static void showTextViewPageFragment(Context context   ) {
         showSimpleBack(context, SimpleBackPage.VIEW_PAGE);
-
-
-    }
-
-
-    /**
-     *  test view
-     * @param context
-     */
-    public static void showTestTabLayoutViewPage(Context context   ) {
-        showSimpleBack(context, SimpleBackPage.TABLAYOUT_VIEWPAGE);
 
 
     }

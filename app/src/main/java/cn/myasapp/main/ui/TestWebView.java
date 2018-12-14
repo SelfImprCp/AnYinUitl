@@ -33,7 +33,7 @@ public class TestWebView extends BaseActivity {
         webview_test_title.setTitleBackFinshActivity(this);
         webview_test_title.setTitleStr("微信中加载网页时带线行进度条的WebView的实现");
 
-        String url = "http://blog.csdn.net/finddreams/article/details/44172639/";
+        String url = "http://webapp.ailibuli.cn/News/news.html?noeId=3a492787-771a-432a-b9da-7ed94f6a76c9";
         webview_test_view.loadUrl(url);
 
     }

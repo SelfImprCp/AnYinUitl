@@ -51,6 +51,7 @@
         su:lineColor="#ffff6000"
         su:maskHight="32dp"
         su:noEmpty="true"
+        android:visibility="gone"
         su:normalTextColor="#777"
         su:normalTextSize="12sp"
         su:selecredTextColor="#ff000000"

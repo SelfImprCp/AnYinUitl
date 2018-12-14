@@ -36,7 +36,6 @@ import java.io.File;
  *
  * @author FireAnt（http://my.oschina.net/LittleDY）
  * @version 创建时间：2014年11月18日 下午4:21:00
- *
  */
 
 public abstract class UpdateManagerUtil {
@@ -139,7 +138,7 @@ public abstract class UpdateManagerUtil {
      *
      * @param updateRes
      */
-    public void onFinshCheck(UpdateRes updateRes, String currentVersion, boolean isDialogSelect) {
+    public void onFinshCheck(UpdateRes updateRes, int currentVersion, boolean isDialogSelect) {
         if (haveNew(mContext, updateRes, currentVersion)) {
 
             if (isDialogSelect) {
@@ -159,9 +158,9 @@ public abstract class UpdateManagerUtil {
      * 检查 是否有新版本
      *
      * @param updateRes
-     * @return`
+     * @return
      */
-    public boolean haveNew(Context context, UpdateRes updateRes, String currentVersion) {
+    public boolean haveNew(Context context, UpdateRes updateRes, int currentVersion) {
         if (updateRes == null) {
             return false;
         }
@@ -171,9 +170,9 @@ public abstract class UpdateManagerUtil {
 //
 
 
-        LogCp.i(LogCp.CP, UpdateManagerUtil.class + "取得的版本，" + currentVersion + " 传来的版本" + updateRes.getVersion());
+        LogCp.i(LogCp.CP, UpdateManagerUtil.class + "取得的版本，" + currentVersion + " 传来的版本" + updateRes.getVersionCode());
 
-        if (!currentVersion.equals(updateRes.getVersion())) {
+        if (currentVersion < updateRes.getVersionCode()) {
             haveNew = true;
         }
 
@@ -191,7 +190,6 @@ public abstract class UpdateManagerUtil {
 
 
     /**
-     *
      * 有新版本， 不弹出是否更新的弹框
      *
      * @param updateRes
@@ -236,17 +234,8 @@ public abstract class UpdateManagerUtil {
 		 */
 
 
-        String nextUpdate = "";
-
-        if (updateRes.isForceupdate()) {
-
-        } else {
-            nextUpdate = "下次再说";
-        }
-
-
         simplecDialog = BasicDialog.versionDialog(mContext, "发现新版本:" + updateRes.getVersion(),
-                updateRes.getDesc(), "立即更新", nextUpdate, new OnClickListener() {
+                updateRes.getDesc(), "立即更新", "下次再说", new OnClickListener() {
 
                     @Override
                     public void onClick(View arg0) {
@@ -296,14 +285,14 @@ public abstract class UpdateManagerUtil {
     /**
      * 取得 当前应用版本号
      *
-     * @param packageName
+     * @param
      * @return
      */
-    public static int getVersionCode(Context context, String packageName) {
+    public static int getVersionCode(Context context) {
         int versionCode = 0;
         try {
             versionCode = context.getPackageManager()
-                    .getPackageInfo(packageName, 0).versionCode;
+                    .getPackageInfo(context.getPackageName(), 0).versionCode;
         } catch (PackageManager.NameNotFoundException ex) {
             versionCode = 0;
         }

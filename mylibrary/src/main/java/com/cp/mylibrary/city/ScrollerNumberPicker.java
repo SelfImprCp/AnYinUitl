@@ -16,6 +16,7 @@ import android.view.View;
 
 
 import com.cp.mylibrary.R;
+import com.cp.mylibrary.utils.AppUtils;
 import com.cp.mylibrary.utils.LogCp;
 
 import java.util.ArrayList;
@@ -23,85 +24,127 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * 
  * 滑动选择
- * 
+ *
  * @author
- * 
  */
 public class ScrollerNumberPicker extends View {
 
 
-
-
-	/** 控件宽度 */
+	/**
+	 * 控件宽度
+	 */
 	private float controlWidth;
-	/** 控件高度 */
+	/**
+	 * 控件高度
+	 */
 	private float controlHeight;
-	/** 是否滑动中 */
+	/**
+	 * 是否滑动中
+	 */
 	private boolean isScrolling = false;
-	/** 选择的内容 */
+	/**
+	 * 选择的内容
+	 */
 	private ArrayList<ItemObject> itemList = new ArrayList<ItemObject>();
-	/** 设置数据 */
+	/**
+	 * 设置数据
+	 */
 	private ArrayList<String> dataList = new ArrayList<String>();
-	/** 按下的坐标 */
+	/**
+	 * 按下的坐标
+	 */
 	private int downY;
-	/** 按下的时间 */
+	/**
+	 * 按下的时间
+	 */
 	private long downTime = 0;
-	/** 短促移动 */
+	/**
+	 * 短促移动
+	 */
 	private long goonTime = 200;
-	/** 短促移动距离 */
+	/**
+	 * 短促移动距离
+	 */
 	private int goonDistence = 100;
-	/** 画线画笔 */
+	/**
+	 * 画线画笔
+	 */
 	private Paint linePaint;
-	/** 线的默认颜色 */
+	/**
+	 * 线的默认颜色
+	 */
 	private int lineColor = 0xff000000;
-	/** 默认字体 */
+	/**
+	 * 默认字体
+	 */
 	private float normalFont = 14.0f;
-	/** 选中的时候字体 */
+	/**
+	 * 选中的时候字体
+	 */
 	private float selectedFont = 22.0f;
-	/** 单元格高度 */
+	/**
+	 * 单元格高度
+	 */
 	private int unitHeight = 50;
-	/** 显示多少个内容 */
+	/**
+	 * 显示多少个内容
+	 */
 	private int itemNumber = 7;
-	/** 默认字体颜色 */
+	/**
+	 * 默认字体颜色
+	 */
 	private int normalColor = 0xff000000;
-	/** 选中时候的字体颜色 */
+	/**
+	 * 选中时候的字体颜色
+	 */
 	private int selectedColor = 0xffff0000;
-	/** 蒙板高度 */
+	/**
+	 * 蒙板高度
+	 */
 	private float maskHight = 48.0f;
-	/** 选择监听 */
+	/**
+	 * 选择监听
+	 */
 	private OnSelectListener onSelectListener;
-	/** 是否可用 */
+	/**
+	 * 是否可用
+	 */
 	private boolean isEnable = true;
-	/** 刷新界面 */
+	/**
+	 * 刷新界面
+	 */
 	private static final int REFRESH_VIEW = 0x001;
-	/** 移动距离 */
+	/**
+	 * 移动距离
+	 */
 	private static final int MOVE_NUMBER = 5;
-	/** 是否允许选空 */
+	/**
+	 * 是否允许选空
+	 */
 	private boolean noEmpty = false;
-	
-	/** 正在修改数据，避免ConcurrentModificationException异常 */
-	private boolean isClearing = false;
 
+	/**
+	 * 正在修改数据，避免ConcurrentModificationException异常
+	 */
+	private boolean isClearing = false;
 
 
 	private List<Cityinfo> province_list = new ArrayList<Cityinfo>();
 	private HashMap<String, List<Cityinfo>> city_map = new HashMap<String, List<Cityinfo>>();
-	private HashMap<String, List<Cityinfo>> couny_map = new HashMap<String, List<Cityinfo>>();
-
-
+//	private HashMap<String, List<Cityinfo>> couny_map = new HashMap<String, List<Cityinfo>>();
+//
 
 
 	/**
-	 *  通过省名取得省id
+	 * 通过省名取得省id
 	 *
 	 * @return
 	 */
 	public String getSelectedProvinceID(String provinceStr) {
 
-		LogCp.i(LogCp.CP,ScrollerNumberPicker.class +
-				"来取的名： 外面 省" + provinceStr );
+		LogCp.i(LogCp.CP, ScrollerNumberPicker.class +
+				"来取的名： 外面 省" + provinceStr);
 		for (Cityinfo cityinfo : province_list) {
 
 
@@ -110,24 +153,24 @@ public class ScrollerNumberPicker extends View {
 		}
 		return "";
 	}
+
 	/**
-	 *  通过市名名取得市id
+	 * 通过市名名取得市id
 	 *
 	 * @return
 	 */
-	public String getSelectedCityID(String provinceID ,String cityStr) {
+	public String getSelectedCityID(String provinceID, String cityStr) {
 
-		LogCp.i(LogCp.CP,ScrollerNumberPicker.class +
-				"来取的名： 外面 市" + cityStr +" city map " + city_map.size() );
+		LogCp.i(LogCp.CP, ScrollerNumberPicker.class +
+				"来取的名： 外面 市" + cityStr + " city map " + city_map.size());
 
 		// 通过省名取得这个省id下面所有的市
 
 		List<Cityinfo> cityList = city_map.get(provinceID);
 
-		LogCp.i(LogCp.CP,ScrollerNumberPicker.class +
+		LogCp.i(LogCp.CP, ScrollerNumberPicker.class +
 				"来取的名： 当前省下多少市" + cityList);
-		if (cityList!=null)
-		{
+		if (cityList != null) {
 			for (Cityinfo cityinfo : cityList) {
 
 
@@ -140,34 +183,63 @@ public class ScrollerNumberPicker extends View {
 		return "";
 	}
 
+
 	/**
-	 *  通过区名名取得区id
+	 * 通过市名名取得市id
 	 *
 	 * @return
 	 */
-	public String getSelectedCountyID(String cityID,String countyStr) {
+	public String getSelectedCityIndex(String provinceID, String cityStr) {
 
-		LogCp.i(LogCp.CP,ScrollerNumberPicker.class +
-				"来取的名： 外面 区" + countyStr );
-		List<Cityinfo> cityList = couny_map.get(cityID);
+		LogCp.i(LogCp.CP, ScrollerNumberPicker.class +
+				"来取的名： 外面 市" + cityStr + " city map " + city_map.size());
 
- if (cityList!=null)
- {for (Cityinfo cityinfo : cityList) {
+		// 通过省名取得这个省id下面所有的市
+
+		List<Cityinfo> cityList = city_map.get(provinceID);
+
+		LogCp.i(LogCp.CP, ScrollerNumberPicker.class +
+				"来取的名： 当前省下多少市" + cityList);
+		if (cityList != null) {
 
 
-	 if (cityinfo.getCity_name().equals(countyStr))
-		 return cityinfo.getId();
- }
+			for (int i = 0; i < cityList.size(); i++) {
+				if (cityList.get(i).getCity_name().equals(cityStr))
+					return i + "";
+			}
 
- }
+		}
+
 
 		return "";
 	}
 
 
-
+	/**
+	 * 通过区名名取得区id
+	 *
+	 * @return
+	 */
+//	public String getSelectedCountyID(String cityID,String countyStr) {
+//
+//		LogCp.i(LogCp.CP,ScrollerNumberPicker.class +
+//				"来取的名： 外面 区" + countyStr );
+//		List<Cityinfo> cityList = couny_map.get(cityID);
+//
+// if (cityList!=null)
+// {for (Cityinfo cityinfo : cityList) {
+//
+//
+//	 if (cityinfo.getCity_name().equals(countyStr))
+//		 return cityinfo.getId();
+// }
+//
+// }
+//
+//		return "";
+//	}
 	public ScrollerNumberPicker(Context context, AttributeSet attrs,
-			int defStyle) {
+								int defStyle) {
 		super(context, attrs, defStyle);
 		// TODO Auto-generated constructor stub
 		init(context, attrs);
@@ -195,32 +267,32 @@ public class ScrollerNumberPicker extends View {
 			return true;
 		int y = (int) event.getY();
 		switch (event.getAction()) {
-		case MotionEvent.ACTION_DOWN:
-			isScrolling = true;
-			downY = (int) event.getY();
-			downTime = System.currentTimeMillis();
-			break;
-		case MotionEvent.ACTION_MOVE:
-			actionMove(y - downY);
-			onSelectListener();
-			break;
-		case MotionEvent.ACTION_UP:
+			case MotionEvent.ACTION_DOWN:
+				isScrolling = true;
+				downY = (int) event.getY();
+				downTime = System.currentTimeMillis();
+				break;
+			case MotionEvent.ACTION_MOVE:
+				actionMove(y - downY);
+				onSelectListener();
+				break;
+			case MotionEvent.ACTION_UP:
 
-			// 移动距离的绝对值
-			int move = (y - downY);
-			move = move > 0 ? move : move * (-1);
-			// 判断段时间移动的距离
-			if (System.currentTimeMillis() - downTime < goonTime
-					&& move > goonDistence) {
-				goonMove(y - downY);
-			} else {
-				actionUp(y - downY);
-			}
-			noEmpty();
-			isScrolling = false;
-			break;
-		default:
-			break;
+				// 移动距离的绝对值
+				int move = (y - downY);
+				move = move > 0 ? move : move * (-1);
+				// 判断段时间移动的距离
+				if (System.currentTimeMillis() - downTime < goonTime
+						&& move > goonDistence) {
+					goonMove(y - downY);
+				} else {
+					actionUp(y - downY);
+				}
+				noEmpty();
+				isScrolling = false;
+				break;
+			default:
+				break;
 		}
 		return true;
 	}
@@ -250,7 +322,7 @@ public class ScrollerNumberPicker extends View {
 
 	@Override
 	protected void onLayout(boolean changed, int left, int top, int right,
-			int bottom) {
+							int bottom) {
 		// TODO Auto-generated method stub
 		super.onLayout(changed, left, top, right, bottom);
 	}
@@ -340,7 +412,7 @@ public class ScrollerNumberPicker extends View {
 
 	/**
 	 * 移动的时候
-	 * 
+	 *
 	 * @param move
 	 */
 	private void actionMove(int move) {
@@ -352,7 +424,7 @@ public class ScrollerNumberPicker extends View {
 
 	/**
 	 * 移动，线程中调用
-	 * 
+	 *
 	 * @param move
 	 */
 	private void actionThreadMove(int move) {
@@ -366,7 +438,7 @@ public class ScrollerNumberPicker extends View {
 
 	/**
 	 * 松开的时候
-	 * 
+	 *
 	 * @param move
 	 */
 	private void actionUp(int move) {
@@ -404,7 +476,7 @@ public class ScrollerNumberPicker extends View {
 
 	/**
 	 * 缓慢移动
-	 * 
+	 *
 	 * @param move
 	 */
 	private synchronized void slowMove(final int move) {
@@ -462,7 +534,7 @@ public class ScrollerNumberPicker extends View {
 
 	/**
 	 * 移动到默认位置
-	 * 
+	 *
 	 * @param move
 	 */
 	private void defaultMove(int move) {
@@ -489,7 +561,7 @@ public class ScrollerNumberPicker extends View {
 
 	/**
 	 * 绘制线条
-	 * 
+	 *
 	 * @param canvas
 	 */
 	private void drawLine(Canvas canvas) {
@@ -501,6 +573,21 @@ public class ScrollerNumberPicker extends View {
 			linePaint.setStrokeWidth(1f);
 		}
 
+
+//        LogCp.i(LogCp.CP, ScrollerNumberPicker.class + " 绘制线条");
+
+
+		int currentapiVersion = android.os.Build.VERSION.SDK_INT;
+
+
+		if (currentapiVersion > 26 || currentapiVersion == 26) {
+
+			//  float xM = 100;
+
+			controlWidth = 489;
+		}
+
+
 		canvas.drawLine(0, controlHeight / 2 - unitHeight / 2 + 2,
 				controlWidth, controlHeight / 2 - unitHeight / 2 + 2, linePaint);
 		canvas.drawLine(0, controlHeight / 2 + unitHeight / 2 - 2,
@@ -509,7 +596,7 @@ public class ScrollerNumberPicker extends View {
 
 	/**
 	 * 绘制遮盖板
-	 * 
+	 *
 	 * @param canvas
 	 */
 	private void drawMask(Canvas canvas) {
@@ -537,6 +624,10 @@ public class ScrollerNumberPicker extends View {
 	private void init(Context context, AttributeSet attrs) {
 		TypedArray attribute = context.obtainStyledAttributes(attrs,
 				R.styleable.NumberPicker);
+
+
+//        LogCp.i(LogCp.CP, ScrollerNumberPicker.class + " 设置属性");
+
 		unitHeight = (int) attribute.getDimension(
 				R.styleable.NumberPicker_unitHight, 32);
 		normalFont = attribute.getDimension(
@@ -551,6 +642,7 @@ public class ScrollerNumberPicker extends View {
 		lineColor = attribute.getColor(R.styleable.NumberPicker_lineColor,
 				0xff000000);
 		maskHight = attribute.getDimension(
+
 				R.styleable.NumberPicker_maskHight, 48.0f);
 		noEmpty = attribute.getBoolean(R.styleable.NumberPicker_noEmpty,
 				false);
@@ -564,24 +656,24 @@ public class ScrollerNumberPicker extends View {
 
 	/**
 	 * 设置数据
-	 * 	private List<Cityinfo> province_list = new ArrayList<Cityinfo>();
-	 private HashMap<String, List<Cityinfo>> city_map = new HashMap<String, List<Cityinfo>>();
-	 private HashMap<String, List<Cityinfo>> couny_map = new HashMap<String, List<Cityinfo>>();
-
+	 * private List<Cityinfo> province_list = new ArrayList<Cityinfo>();
+	 * private HashMap<String, List<Cityinfo>> city_map = new HashMap<String, List<Cityinfo>>();
+	 * private HashMap<String, List<Cityinfo>> couny_map = new HashMap<String, List<Cityinfo>>();
+	 *
 	 * @param data
 	 */
-	public void setData(ArrayList<String> data,List<Cityinfo> province_list,HashMap<String, List<Cityinfo>> city_map,HashMap<String, List<Cityinfo>> couny_map) {
+	public void setData(ArrayList<String> data, List<Cityinfo> province_list, HashMap<String, List<Cityinfo>> city_map) {
 
 		this.dataList = data;
 		this.province_list = province_list;
 		this.city_map = city_map;
-		this.couny_map = couny_map;
+
 		initData();
 	}
 
 	/**
 	 * 获取返回项
-	 * 
+	 *
 	 * @return
 	 */
 	public int getSelected() {
@@ -594,7 +686,7 @@ public class ScrollerNumberPicker extends View {
 
 	/**
 	 * 获取返回的内容
-	 * 
+	 *
 	 * @return
 	 */
 	public String getSelectedText() {
@@ -616,9 +708,10 @@ public class ScrollerNumberPicker extends View {
 //		}
 //		return "";
 //	}
+
 	/**
 	 * 是否正在滑动
-	 * 
+	 *
 	 * @return
 	 */
 	public boolean isScrolling() {
@@ -627,7 +720,7 @@ public class ScrollerNumberPicker extends View {
 
 	/**
 	 * 是否可用
-	 * 
+	 *
 	 * @return
 	 */
 	public boolean isEnable() {
@@ -636,7 +729,7 @@ public class ScrollerNumberPicker extends View {
 
 	/**
 	 * 设置是否可用
-	 * 
+	 *
 	 * @param isEnable
 	 */
 	public void setEnable(boolean isEnable) {
@@ -645,7 +738,7 @@ public class ScrollerNumberPicker extends View {
 
 	/**
 	 * 设置默认选项
-	 * 
+	 *
 	 * @param index
 	 */
 	public void setDefault(int index) {
@@ -655,7 +748,7 @@ public class ScrollerNumberPicker extends View {
 
 	/**
 	 * 获取列表大小
-	 * 
+	 *
 	 * @return
 	 */
 	public int getListSize() {
@@ -666,7 +759,7 @@ public class ScrollerNumberPicker extends View {
 
 	/**
 	 * 获取某项的内容
-	 * 
+	 *
 	 * @param index
 	 * @return
 	 */
@@ -678,7 +771,7 @@ public class ScrollerNumberPicker extends View {
 
 	/**
 	 * 监听
-	 * 
+	 *
 	 * @param onSelectListener
 	 */
 	public void setOnSelectListener(OnSelectListener onSelectListener) {
@@ -693,11 +786,11 @@ public class ScrollerNumberPicker extends View {
 			// TODO Auto-generated method stub
 			super.handleMessage(msg);
 			switch (msg.what) {
-			case REFRESH_VIEW:
-				invalidate();
-				break;
-			default:
-				break;
+				case REFRESH_VIEW:
+					invalidate();
+					break;
+				default:
+					break;
 			}
 		}
 
@@ -705,23 +798,37 @@ public class ScrollerNumberPicker extends View {
 
 	/**
 	 * 单条内容
-	 * 
+	 *
 	 * @author zoudong
 	 */
 	private class ItemObject {
-		/** id */
+		/**
+		 * id
+		 */
 		public int id = 0;
-		/** 内容 */
+		/**
+		 * 内容
+		 */
 		public String itemText = "";
-		/** x坐标 */
+		/**
+		 * x坐标
+		 */
 		public int x = 0;
-		/** y坐标 */
+		/**
+		 * y坐标
+		 */
 		public int y = 0;
-		/** 移动距离 */
+		/**
+		 * 移动距离
+		 */
 		public int move = 0;
-		/** 字体画笔 */
+		/**
+		 * 字体画笔
+		 */
 		private Paint textPaint;
-		/** 字体范围矩形 */
+		/**
+		 * 字体范围矩形
+		 */
 		private Rect textRect;
 
 		public ItemObject() {
@@ -730,7 +837,7 @@ public class ScrollerNumberPicker extends View {
 
 		/**
 		 * 绘制自身
-		 * 
+		 *
 		 * @param canvas
 		 */
 		public void drawSelf(Canvas canvas) {
@@ -753,11 +860,12 @@ public class ScrollerNumberPicker extends View {
 				// 计算当前字体大小
 				float textSize = (float) normalFont
 						+ ((float) (selectedFont - normalFont) * (1.0f - (float) moveToSelect
-								/ (float) unitHeight));
+						/ (float) unitHeight));
 				textPaint.setTextSize(textSize);
 			} else {
 				textPaint.setColor(normalColor);
 				textPaint.setTextSize(normalFont);
+
 			}
 
 			// 返回包围整个字符串的最小的一个Rect区域
@@ -766,10 +874,35 @@ public class ScrollerNumberPicker extends View {
 			if (!isInView())
 				return;
 
-			// 绘制内容
-			canvas.drawText(itemText, x + controlWidth / 2 - textRect.width()
-					/ 2, y + move + unitHeight / 2 + textRect.height() / 2,
-					textPaint);
+
+//            LogCp.i(LogCp.CP, ScrollerNumberPicker.class + " 绘制 文字" + x + " c:" + controlWidth + " text:" + textRect.width());
+//
+
+			int currentapiVersion = android.os.Build.VERSION.SDK_INT;
+
+
+			if (currentapiVersion > 26 || currentapiVersion == 26) {
+
+				//  float xM = 100;
+
+				controlWidth = 489;
+				float xM = x + controlWidth / 2 - textRect.width()
+						/ 2;
+				float yM = y + move + unitHeight / 2 + textRect.height() / 2;
+
+//                LogCp.i(LogCp.CP, ScrollerNumberPicker.class + " 绘制 文字 xm :" + xM + " ym:" + yM);
+
+				canvas.drawText(itemText, xM, yM,
+						textPaint);
+			} else {
+
+				//  绘制内容
+				canvas.drawText(itemText, x + controlWidth / 2 - textRect.width()
+								/ 2, y + move + unitHeight / 2 + textRect.height() / 2,
+						textPaint);
+
+			}
+
 
 		}
 
@@ -782,7 +915,7 @@ public class ScrollerNumberPicker extends View {
 
 		/**
 		 * 移动距离
-		 * 
+		 *
 		 * @param _move
 		 */
 		public void move(int _move) {
@@ -796,7 +929,7 @@ public class ScrollerNumberPicker extends View {
 
 		/**
 		 * 判断是否在选择区域内
-		 * 
+		 *
 		 * @return
 		 */
 		public boolean isSelected() {
@@ -806,11 +939,11 @@ public class ScrollerNumberPicker extends View {
 			if ((y + move + unitHeight) >= controlHeight / 2 - unitHeight / 2
 					+ 2
 					&& (y + move + unitHeight) <= controlHeight / 2
-							+ unitHeight / 2 - 2)
+					+ unitHeight / 2 - 2)
 				return true;
 			if ((y + move) <= controlHeight / 2 - unitHeight / 2 + 2
 					&& (y + move + unitHeight) >= controlHeight / 2
-							+ unitHeight / 2 - 2)
+					+ unitHeight / 2 - 2)
 				return true;
 			return false;
 		}
@@ -825,15 +958,14 @@ public class ScrollerNumberPicker extends View {
 
 	/**
 	 * 选择监听监听
-	 * 
+	 *
 	 * @author zoudong
-	 * 
 	 */
 	public interface OnSelectListener {
 
 		/**
 		 * 结束选择
-		 * 
+		 *
 		 * @param id
 		 * @param text
 		 */
@@ -841,7 +973,7 @@ public class ScrollerNumberPicker extends View {
 
 		/**
 		 * 选中的内容
-		 * 
+		 *
 		 * @param id
 		 * @param text
 		 */

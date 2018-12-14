@@ -5,7 +5,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.provider.SyncStateContract;
 import android.util.Log;
 import android.view.Display;
 import android.view.Gravity;
@@ -14,22 +13,13 @@ import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.cp.mylibrary.R;
-import com.cp.mylibrary.app.Config;
-import com.cp.mylibrary.interf.ShareListener;
-import com.cp.mylibrary.utils.ImageLoaderUtils;
 import com.cp.mylibrary.utils.LogCp;
 import com.cp.mylibrary.utils.StringUtils;
 import com.umeng.socialize.ShareAction;
-import com.umeng.socialize.UMAuthListener;
-import com.umeng.socialize.UMShareAPI;
 import com.umeng.socialize.UMShareListener;
-import com.umeng.socialize.UmengTool;
 import com.umeng.socialize.bean.SHARE_MEDIA;
-
-import com.umeng.socialize.handler.UMWXHandler;
 import com.umeng.socialize.media.UMImage;
-
-import java.util.Map;
+import com.umeng.socialize.media.UMWeb;
 
 
 /**
@@ -151,13 +141,16 @@ public class ShareDialog extends CommonDialog implements
         LogCp.i(LogCp.CP, ShareDialog.class + " 来分享到weChat 朋友圈" + title + content + link + share_img_url);
 
 
-        UMImage image = new UMImage(mActivity, share_img_url);
+        UMImage thumb = new UMImage(mActivity,share_img_url);
+        UMWeb web = new UMWeb(link);
+
+        web.setTitle(title);//标题
+        web.setThumb(thumb);  //缩略图
+        web.setDescription(content);//描述
 
         new ShareAction(mActivity).setPlatform(SHARE_MEDIA.WEIXIN_CIRCLE)
                 .withText(content)
-                .withTitle(title)
-                .withTargetUrl(link)
-                .withMedia(image)
+                .withMedia(web)
                 .setCallback(umShareListener)
                 .share();
 
@@ -169,13 +162,16 @@ public class ShareDialog extends CommonDialog implements
 
         LogCp.i(LogCp.CP, ShareDialog.class + " 来分享到weChat  " + title + content + link + share_img_url);
 
-        UMImage image = new UMImage(mActivity, share_img_url);
+        UMImage thumb = new UMImage(mActivity,share_img_url);
+        UMWeb web = new UMWeb(link);
+
+        web.setTitle(title);//标题
+        web.setThumb(thumb);  //缩略图
+        web.setDescription(content);//描述
 
         new ShareAction(mActivity).setPlatform(SHARE_MEDIA.WEIXIN)
                 .withText(content)
-                .withTitle(title)
-                .withTargetUrl(link)
-                .withMedia(image)
+                .withMedia(web)
                 .setCallback(umShareListener)
                 .share();
 
@@ -189,8 +185,8 @@ public class ShareDialog extends CommonDialog implements
 
         new ShareAction(mActivity).setPlatform(SHARE_MEDIA.SINA)
                 .withText(content)
-                .withTitle(title)
-                .withTargetUrl(link)
+                //  .withTitle(title)
+                //.withTargetUrl(link)
                 .withMedia(image)
                 .setCallback(umShareListener)
                 .share();
@@ -203,8 +199,8 @@ public class ShareDialog extends CommonDialog implements
 
         new ShareAction(mActivity).setPlatform(SHARE_MEDIA.QQ)
                 .withText(content)
-                .withTitle(title)
-                .withTargetUrl(link)
+                //  .withTitle(title)
+                //    .withTargetUrl(link)
                 .withMedia(image)
                 .setCallback(umShareListener)
                 .share();
@@ -212,17 +208,27 @@ public class ShareDialog extends CommonDialog implements
 
 
     private UMShareListener umShareListener = new UMShareListener() {
+
+        @Override
+        public void onStart(SHARE_MEDIA share_media) {
+
+        }
+
         @Override
         public void onResult(SHARE_MEDIA platform) {
             Log.d("plat", "platform" + platform);
+//            ,
+//                    ,
 
-            Toast.makeText(context, platform + " 分享成功啦", Toast.LENGTH_SHORT).show();
+
+            Toast.makeText(context, "分享成功", Toast.LENGTH_SHORT).show();
+
 
         }
 
         @Override
         public void onError(SHARE_MEDIA platform, Throwable t) {
-            Toast.makeText(context, platform + " 分享失败啦", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "分享失败", Toast.LENGTH_SHORT).show();
             if (t != null) {
                 Log.d("throw", "throw:" + t.getMessage());
             }
@@ -230,8 +236,10 @@ public class ShareDialog extends CommonDialog implements
 
         @Override
         public void onCancel(SHARE_MEDIA platform) {
-            Toast.makeText(context, platform + " 分享取消了", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "分享取消了", Toast.LENGTH_SHORT).show();
         }
+
+
     };
 
 

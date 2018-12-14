@@ -42,7 +42,7 @@ public class TestApi {
 
 
         String all_attentin_url = "query";
-        MyHttpClient.post(all_attentin_url, params, handler);
+        MyHttpClient.getInstance().post(all_attentin_url, params, handler);
 
     }
 

@@ -9,7 +9,6 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.OvershootInterpolator;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -22,9 +21,6 @@ import com.cp.mylibrary.bean.MyEntity;
 import com.cp.mylibrary.utils.LogCp;
 import com.cp.mylibrary.utils.NetWorkUtil;
 import com.cp.mylibrary.utils.StringUtils;
-import com.nineoldandroids.view.ViewPropertyAnimator;
-
-import org.kymjs.kjframe.widget.ViewHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,13 +28,13 @@ import java.util.List;
 /**
  * Created by Jerry on 2016/6/17.
  * <p/>
- *
- *   带刷新加载更多的listView 要继承的
+ * <p>
+ * 带刷新加载更多的listView 要继承的
  * 封装好的类,正常情况下无需修改,子类继承只需要复写两个方法就可以了
  */
 public abstract class ListBaseAdapter<T extends MyEntity> extends BaseAdapter {
-   //没有数据 了，已加载全部
-   public static final int STATE_EMPTY_ITEM = 0;
+    //没有数据 了，已加载全部
+    public static final int STATE_EMPTY_ITEM = 0;
     //加载更多
     public static final int STATE_LOAD_MORE = 1;
     //没有更多了，已加载全部
@@ -56,8 +52,6 @@ public abstract class ListBaseAdapter<T extends MyEntity> extends BaseAdapter {
     protected int _loadFinishText;
     protected int _noDateText;
     protected int mScreenWidth;
-
-
 
 
     private LayoutInflater mInflater;
@@ -197,23 +191,18 @@ public abstract class ListBaseAdapter<T extends MyEntity> extends BaseAdapter {
     }
 
 
-
-
-
     /**
-     *  子类必须复写，
+     * 子类必须复写，
+     *
      * @param holder
      * @param t
      */
-    public abstract void convert(ViewHolder holder, T t,int postion);
+    public abstract void convert(ViewHolder holder, T t, int postion);
 
     /**
-     *
      * @return
      */
-    public abstract int  getItemLayoutId();
-
-
+    public abstract int getItemLayoutId();
 
 
     @SuppressWarnings("deprecation")
@@ -243,19 +232,19 @@ public abstract class ListBaseAdapter<T extends MyEntity> extends BaseAdapter {
                     case STATE_NO_MORE:
                         mFooterView.setVisibility(View.VISIBLE);
                         progress.setVisibility(View.GONE);
-                          text.setVisibility(View.VISIBLE);
-                           text.setText(_loadFinishText);
+                        text.setVisibility(View.VISIBLE);
+                        text.setText(_loadFinishText);
                         break;
                     case STATE_EMPTY_ITEM:
                         progress.setVisibility(View.GONE);
                         mFooterView.setVisibility(View.VISIBLE);
-                        //       text.setText(_noDateText);
+                        text.setText(_noDateText);
                         break;
                     case STATE_NETWORK_ERROR:
                         mFooterView.setVisibility(View.VISIBLE);
                         progress.setVisibility(View.GONE);
                         text.setVisibility(View.VISIBLE);
-                        if (NetWorkUtil.hasInternetConnected(mContext) ) {
+                        if (NetWorkUtil.hasInternetConnected(mContext)) {
                             text.setText("加载出错了");
                         } else {
                             text.setText("没有可用的网络");
@@ -274,33 +263,15 @@ public abstract class ListBaseAdapter<T extends MyEntity> extends BaseAdapter {
         }
 
 
-
-
-
-
         //构造viewHolder ,
         ViewHolder viewHolder = ViewHolder.get(mContext, convertView, parent,
                 getItemLayoutId(), position);
 
-        convert(viewHolder, getItem(position),position);
-
-
-
-        View itemView = viewHolder.getConvertView();
-
-        ViewHelper.setScaleX(itemView,0.8f);
-        ViewHelper.setScaleY(itemView,0.8f);
-        ViewPropertyAnimator.animate(itemView).scaleX(1).setDuration(1500).setInterpolator(new OvershootInterpolator()).start();
-        ViewPropertyAnimator.animate(itemView).scaleY(1).setDuration(1500).setInterpolator(new OvershootInterpolator()).start();
-
-
-
+        convert(viewHolder, getItem(position), position);
         return viewHolder.getConvertView();
 
 
-
-
-      //  return getRealView(position, convertView, parent);
+        //  return getRealView(position, convertView, parent);
     }
 
 //    protected View getRealView(int position, View convertView, ViewGroup parent) {
@@ -346,7 +317,6 @@ public abstract class ListBaseAdapter<T extends MyEntity> extends BaseAdapter {
     }
 
 
-
     protected void setText(TextView textView, String text, boolean needGone) {
         if (text == null || TextUtils.isEmpty(text)) {
             if (needGone) {
@@ -365,9 +335,6 @@ public abstract class ListBaseAdapter<T extends MyEntity> extends BaseAdapter {
     protected void setText(TextView textView, String text) {
         setText(textView, text, false);
     }
-
-
-
 
 
 }

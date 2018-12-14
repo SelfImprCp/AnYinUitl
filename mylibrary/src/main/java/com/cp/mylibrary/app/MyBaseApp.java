@@ -19,7 +19,7 @@ public class MyBaseApp extends Application {
         PlatformConfig.setWeixin(Config.WEICHAT_APPID, Config.WEICHAT_SECRET);
         //豆瓣RENREN平台目前只能在服务器端配置
         //新浪微博
-        PlatformConfig.setSinaWeibo(Config.SINA_APPID, Config.SINA_SECRET);
+//        PlatformConfig.setSinaWeibo(Config.SINA_APPID, Config.SINA_SECRET);
 
         PlatformConfig.setQQZone(Config.QQ_APPID,Config.QQ_APPKEY);
 
@@ -48,7 +48,7 @@ public class MyBaseApp extends Application {
         UMShareAPI.get(this);
 
         //如果您使用了新浪微博，需要在这里设置回调地址：
-        com.umeng.socialize.Config.REDIRECT_URL = "http://sns.whalecloud.com/sina2/callback";
+//        com.umeng.socialize.Config.REDIRECT_URL = "http://sns.whalecloud.com/sina2/callback";
 
     }
 

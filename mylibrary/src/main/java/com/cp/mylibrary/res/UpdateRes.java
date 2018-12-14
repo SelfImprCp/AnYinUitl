@@ -11,6 +11,15 @@ public class UpdateRes extends Response {
     private String url;
     private String desc;
     private boolean forceupdate;
+    private int versionCode;
+
+    public int getVersionCode() {
+        return versionCode;
+    }
+
+    public void setVersionCode(int versionCode) {
+        this.versionCode = versionCode;
+    }
 
     public String getError() {
         return error;

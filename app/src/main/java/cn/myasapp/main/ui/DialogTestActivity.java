@@ -17,7 +17,6 @@ import com.cp.mylibrary.interf.ShareListener;
 import com.cp.mylibrary.pullto.XRefreshView;
 import com.cp.mylibrary.utils.LogCp;
 import com.cp.mylibrary.utils.ShowToastUtil;
-import com.cp.mylibrary.utils.StatusBarUtil;
 
 import org.kymjs.kjframe.ui.BindView;
 
@@ -55,8 +54,6 @@ public class DialogTestActivity extends BaseActivity {
         super.setRootView();
 
         setContentView(R.layout.activity_test_dialog);
-
-        StatusBarUtil.setColor(DialogTestActivity.this,getResources().getColor(R.color.base_color),50);
     }
 
     @Override
@@ -184,19 +181,19 @@ public class DialogTestActivity extends BaseActivity {
 
             case R.id.dialog_share:
 
-//                if (mDialog == null)
-//                    mDialog = new ShareDialog(this  ,this);
-//                mDialog.setShareInfo("标题","内容","www.baidu.com","http://img0.imgtn.bdimg.com/it/u=1126541908,2603454962&fm=21&gp=0.jpg");
-//                mDialog.setCancelable(true);
-//                mDialog.setCanceledOnTouchOutside(true);
-//                mDialog.setTitle(R.string.share_to);
-//                mDialog.show();
+                if (mDialog == null)
+                    mDialog = new ShareDialog(this  ,this);
+                mDialog.setShareInfo("标题","内容","http://www.baidu.com","http://img0.imgtn.bdimg.com/it/u=1126541908,2603454962&fm=21&gp=0.jpg");
+                mDialog.setCancelable(true);
+                mDialog.setCanceledOnTouchOutside(true);
+                mDialog.setTitle(R.string.share_to);
+                mDialog.show();
 //
 //
 
-
-                WaitDialog waitDialog = DialogHelper.getWaitDialog(DialogTestActivity.this,"加载中...");
-                 waitDialog.show();
+//
+//                WaitDialog waitDialog = DialogHelper.getWaitDialog(DialogTestActivity.this,"加载中...");
+//                 waitDialog.show();
 
 
 //            Dialog    simplecDialog = BasicDialog.versionDialog(DialogTestActivity.this, "发现新版本:",

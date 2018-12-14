@@ -11,7 +11,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.cp.mylibrary.R;
-import com.cp.mylibrary.utils.StringUtils;
 
 
 /**
@@ -141,8 +140,6 @@ public class BasicDialog {
 		// 设置内容
 		TextView msg_tv = (TextView) dialogLayout
 				.findViewById(R.id.base_version_dialog_txt);
-
-
 		msg_tv.setVisibility(View.VISIBLE);
 		msg_tv.setText(msg);
 		Button cancelbtn = (Button) dialogLayout
@@ -155,18 +152,6 @@ public class BasicDialog {
 		if (rightStr != null) {
 			delbtn.setText(rightStr);
 		}
-
-
-		if (StringUtils.isEmpty(rightStr))
-		{
-			delbtn.setVisibility(View.GONE);
-
-		}else
-		{
-			delbtn.setVisibility(View.VISIBLE);
-
-		}
-
 		delbtn.setOnClickListener(itemsOnClick);
 		cancelbtn.setOnClickListener(itemsOnClick);
 		cd.show();

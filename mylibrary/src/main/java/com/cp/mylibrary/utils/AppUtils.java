@@ -5,40 +5,43 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.telephony.TelephonyManager;
-
-import java.util.UUID;
 
 /**
+ *
  * 跟App相关的辅助类
  * Created by Jerry on 2016/7/5.
  */
 public class AppUtils {
 
 
+
     private static final int MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 1;
 
-    private static final int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 2;
+    private static final int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE =2;
 
-    private static final int MY_PERMISSIONS_REQUEST_CAMERA = 3;
+    private static final int MY_PERMISSIONS_REQUEST_CAMERA =3;
 
 
     /**
+     *
      * @param context
      * @return
      */
-    public static String getPackageName(Context context) {
-        return context.getPackageName();
-    }
+     public static String getPackageName  (Context context)
+     {
+          return context.getPackageName();
+     }
 
     /**
      * 检查权限
      */
-    public static void getPromission(Activity context) {
-        LogCp.i(LogCp.CP, AppUtils.class + "  来取权限!");
+    public static   void getPromission(Activity context)
+    {
+        LogCp.i(LogCp.CP,    AppUtils .class + "  来取权限!");
+
+
 
 
 //        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
@@ -62,6 +65,8 @@ public class AppUtils {
                     Manifest.permission.READ_EXTERNAL_STORAGE)) {
 
 
+
+
             } else {
 
                 ActivityCompat.requestPermissions(context,
@@ -69,6 +74,7 @@ public class AppUtils {
                         MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
             }
         }
+
 
 
         // 写入sdcard 权限
@@ -91,8 +97,10 @@ public class AppUtils {
                         MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
 
 
+
             }
         }
+
 
 
         //  使用相机的权限
@@ -115,36 +123,19 @@ public class AppUtils {
                         MY_PERMISSIONS_REQUEST_CAMERA);
 
 
+
             }
         }
 
 
+
+
+
+
+
+
+
     }
 
-
-    /**
-     * Java 获取可变UUID
-     *
-     * @return
-     */
-    public static String getJavaMyUUID() {
-        UUID uuid = UUID.randomUUID();
-        String uniqueId = uuid.toString();
-
-        return uniqueId;
-    }
-
-
-    public static String getAndroidMyUUID(Context context) {
-        final TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-        final String tmDevice, tmSerial, tmPhone, androidId;
-        tmDevice = "" + tm.getDeviceId();
-        tmSerial = "" + tm.getSimSerialNumber();
-        androidId = "" + Settings.Secure.getString(context.getContentResolver(), android.provider.Settings.Secure.ANDROID_ID);
-        UUID deviceUuid = new UUID(androidId.hashCode(), ((long) tmDevice.hashCode() << 32) | tmSerial.hashCode());
-        String uniqueId = deviceUuid.toString();
-
-        return uniqueId;
-    }
 
 }

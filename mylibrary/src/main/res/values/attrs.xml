@@ -45,15 +45,6 @@
         <attr name="isEnable" format="boolean"/>
     </declare-styleable>
 
-    <declare-styleable name="FlowLayout">
-        <attr name="width_space" format="dimension"/>
-        <attr name="height_space" format="dimension"/>
-    </declare-styleable>
 
-    <declare-styleable name="PullZoomView">
-        <attr name="zoomview" format="reference" />
-        <attr name="headview" format="reference" />
-        <attr name="contentview" format="reference" />
-    </declare-styleable>
 
 </resources>

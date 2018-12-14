@@ -4,6 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
+    <View
+        android:id="@+id/ll_gray_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#1a000000"></View>
+
     <LinearLayout
         android:id="@+id/ll_popup"
         android:layout_width="match_parent"

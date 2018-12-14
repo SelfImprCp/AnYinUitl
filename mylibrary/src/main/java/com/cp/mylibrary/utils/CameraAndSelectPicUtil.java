@@ -27,34 +27,31 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
-
-
 /**
  * 拍照或选择图片 上传的工具类
+ * <p>
+ * 使用方法详见 TestCreateTwoCode
  *
- *  使用方法详见 TestCreateTwoCode
- * 
  * @author Administrator
- * 
  */
 public class CameraAndSelectPicUtil {
 
-	
+
 	// 遮罩
 	private View myview_user;
-	 /**
-	  * 在每个布局文件中添加 效果为pop弹出后，背景变暗
-	  *     <View
-    android:id="@+id/myview_user"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:visibility="gone"
-    android:background="#AF000000"/>
-	  */
+	/**
+	 * 在每个布局文件中添加 效果为pop弹出后，背景变暗
+	 * <View
+	 * android:id="@+id/myview_user"
+	 * android:layout_width="fill_parent"
+	 * android:layout_height="fill_parent"
+	 * android:visibility="gone"
+	 * android:background="#AF000000"/>
+	 */
 
-	
+
 	private Context mContext;
-	
+
 	private Activity mActivity;
 
 	private final static String FILE_SAVEPATH = Environment
@@ -67,23 +64,27 @@ public class CameraAndSelectPicUtil {
 	private String protraitPath;
 	private String theLarge;
 
-	private final static int CROP = 200;
+	public int CROP_W = 200;
+	public int CROP_H = 200;
+	public int BILI_W = 200;
+	public int BILI_H = 200;
 
-	 /**
-	  *  
-	  * @param context
-	  * @param activity
-	  * @param view 设置遮罩
-	  */
+
+	/**
+	 * @param context
+	 * @param activity
+	 * @param view     设置遮罩
+	 */
 	public CameraAndSelectPicUtil(Context context, Activity activity, View view) {
 		this.mContext = context;
 		this.myview_user = view;
 		this.mActivity = activity;
 	}
 
-	
+
 	/**
-	 *  传入的View 为点击触发些pop的view
+	 * 传入的View 为点击触发些pop的view
+	 *
 	 * @param parent
 	 * @return
 	 */
@@ -91,32 +92,30 @@ public class CameraAndSelectPicUtil {
 		PopupWindows popWin = new PopupWindows(mContext, parent);
 		return popWin;
 	}
-   
-	 /**
-	  * 取得 上传的图片的文件
-	  * 
-	  */
-	 public File getUpFile()
-	 {
-		 protraitFile = new File(protraitPath);
-		 return protraitFile;
-	 }
 
 	/**
-	 *  取得 上传图片的路径
+	 * 取得 上传的图片的文件
 	 */
-	 public String getUpFilePath()
-	 {
-		 return  protraitPath;
-	 }
-	
-	 
-	  /**
-	   *取得  指定上传的图片的尺寸,如果要原图，宽高为0，
-	   * @param w
-	   * @param h
-	   * @return
-	   */
+	public File getUpFile() {
+		protraitFile = new File(protraitPath);
+		return protraitFile;
+	}
+
+	/**
+	 * 取得 上传图片的路径
+	 */
+	public String getUpFilePath() {
+		return protraitPath;
+	}
+
+
+	/**
+	 * 取得  指定上传的图片的尺寸,如果要原图，宽高为0，
+	 *
+	 * @param w
+	 * @param h
+	 * @return
+	 */
 	public Bitmap getUpBitmapSetSize(int w, int h) {
 
 		if (!StringUtils.isEmpty(protraitPath) && protraitFile.exists()) {
@@ -154,6 +153,11 @@ public class CameraAndSelectPicUtil {
 					.findViewById(R.id.item_popupwindows_Photo);
 			Button bt3 = (Button) view
 					.findViewById(R.id.item_popupwindows_cancel);
+
+			View ll_gray_view = (View) view
+					.findViewById(R.id.ll_gray_view);
+
+
 			bt1.setOnClickListener(new OnClickListener() {
 				public void onClick(View v) {
 					// 拍照，
@@ -173,6 +177,14 @@ public class CameraAndSelectPicUtil {
 				}
 			});
 			bt3.setOnClickListener(new OnClickListener() {
+				public void onClick(View v) {
+					dismiss();
+				}
+			});
+
+
+			ll_gray_view.setOnClickListener(new OnClickListener() {
+				@Override
 				public void onClick(View v) {
 					dismiss();
 				}
@@ -210,7 +222,7 @@ public class CameraAndSelectPicUtil {
 
 	/**
 	 * 设置添加屏幕的背景透明度
-	 * 
+	 *
 	 * @param bgAlpha
 	 */
 	public void backgroundAlpha(float bgAlpha) {
@@ -220,10 +232,10 @@ public class CameraAndSelectPicUtil {
 	}
 
 	/*
-	 * 添加新笔记时弹出的popWin关闭的事件，主要是为了将背景透明度改回来
-	 * 
-	 * @author cg
-	 */
+     * 添加新笔记时弹出的popWin关闭的事件，主要是为了将背景透明度改回来
+     *
+     * @author cg
+     */
 	class poponDismissListener implements PopupWindow.OnDismissListener {
 
 		@Override
@@ -254,7 +266,7 @@ public class CameraAndSelectPicUtil {
 
 		// 没有挂载SD卡，无法保存文件
 		if (StringUtils.isEmpty(savePath)) {
-			ShowToastUtil.showToast(mContext,"无法保存照片，请检查SD卡是否挂载");
+			ShowToastUtil.showToast(mContext, "无法保存照片，请检查SD卡是否挂载");
 			return;
 		}
 
@@ -275,7 +287,7 @@ public class CameraAndSelectPicUtil {
 
 	/**
 	 * 选择图片裁剪
-	 * 
+	 *
 	 * @param
 	 */
 	private void startImagePick() {
@@ -299,11 +311,9 @@ public class CameraAndSelectPicUtil {
 
 	/**
 	 * 拍照后裁剪
-	 * 
-	 * @param data
-	 *            原始图片
-	 * @param
 	 *
+	 * @param data 原始图片
+	 * @param
 	 */
 	public void startActionCrop(Uri data) {
 		if (data == null)
@@ -313,12 +323,14 @@ public class CameraAndSelectPicUtil {
 		intent.setDataAndType(data, "image/*");
 		intent.putExtra("output", getUploadTempFile(data));
 		intent.putExtra("crop", "true");
-		intent.putExtra("aspectX", 1);// 裁剪框比例
-		intent.putExtra("aspectY", 1);
-		intent.putExtra("outputX", CROP);// 输出图片大小
-		intent.putExtra("outputY", CROP);
+		intent.putExtra("aspectX", getBILI_W());// 裁剪框比例
+		intent.putExtra("aspectY", getBILI_H());
+		intent.putExtra("outputX", getCROP_W());// 输出图片大小
+		intent.putExtra("outputY", getCROP_H());
 		intent.putExtra("scale", true);// 去黑边
 		intent.putExtra("scaleUpIfNeeded", true);// 去黑边
+
+
 		mActivity.startActivityForResult(intent,
 				ImageUtils.REQUEST_CODE_GETIMAGE_BYSDCARD);
 	}
@@ -332,7 +344,7 @@ public class CameraAndSelectPicUtil {
 				savedir.mkdirs();
 			}
 		} else {
-			ShowToastUtil.showToast(mContext,"无法保存上传的头像，请检查SD卡是否挂载");
+			ShowToastUtil.showToast(mContext, "无法保存上传的头像，请检查SD卡是否挂载");
 			return null;
 		}
 		String timeStamp = new SimpleDateFormat("yyyyMMddHHmmss")
@@ -355,4 +367,36 @@ public class CameraAndSelectPicUtil {
 		return this.cropUri;
 	}
 
+	public int getBILI_W() {
+		return BILI_W;
+	}
+
+	public void setBILI_W(int BILI_W) {
+		this.BILI_W = BILI_W;
+	}
+
+	public int getBILI_H() {
+		return BILI_H;
+	}
+
+
+	public void setBILI_H(int BILI_H) {
+		this.BILI_H = BILI_H;
+	}
+
+	public int getCROP_W() {
+		return CROP_W;
+	}
+
+	public void setCROP_W(int CROP_W) {
+		this.CROP_W = CROP_W;
+	}
+
+	public int getCROP_H() {
+		return CROP_H;
+	}
+
+	public void setCROP_H(int CROP_H) {
+		this.CROP_H = CROP_H;
+	}
 }

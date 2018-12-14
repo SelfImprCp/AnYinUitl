@@ -14,8 +14,7 @@
 
     <color name="black_color_30">#000000</color>
     <color name="text_light">#3f000000</color>
-    <!--  程序的主色调-->
-    <color name="bg_color_f7f7f8">#F7F7F8</color>
+
     <!-- 下拉刷新时，颜色值 -->
     <color name="swiperefresh_color1">#ff00ddff</color>
     <color name="swiperefresh_color2">#ffffbb33</color>
@@ -25,7 +24,7 @@
     <color name="light_gray">#1a000000</color>
     <color name="lightest_gray">#0a000000</color>
 
-    <color name="base_color">#451229</color>
+    <color name="base_color">#fc4743</color>
     <color name="ailibuli_orange_color">#FE5F12</color>
     <color name="ailibuli_hong_color">#FF5E5B</color>
     <color name="main_gray">#9A9A9A</color>
@@ -38,10 +37,5 @@
     <color name="text_dark">#af000000</color>
 
     <color name="bg_touch">@color/lightest_gray</color>
-
-
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
 
 </resources>

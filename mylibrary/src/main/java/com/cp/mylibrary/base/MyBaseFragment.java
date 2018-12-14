@@ -28,15 +28,6 @@ public class MyBaseFragment extends SupportFragment {
 
     public View view;
 
-
-
-    //从哪一页面开始
-
-    public   int startPage = 1;
-
-    //当前页数
-    public int mCurrentPage = 1;
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
 
@@ -44,7 +35,6 @@ public class MyBaseFragment extends SupportFragment {
 
 
         super.onCreate(savedInstanceState);
-        EventBus.getDefault().register(this);
 
 
         if (!NetWorkUtil.hasInternetConnected(getActivity())) {
@@ -94,9 +84,8 @@ public class MyBaseFragment extends SupportFragment {
     public void onDestroy() {
 
         super.onDestroy();
-        //     EventBus.getDefault().unregister(this);
 
-    }
+         }
 
 
     /**
@@ -134,6 +123,5 @@ public class MyBaseFragment extends SupportFragment {
     }
 
 
-    public void onEvent(BaseEvent event) {
-    }
+
 }

@@ -118,13 +118,6 @@
                 android:text="    测viewpage fragment   " />
 
             <TextView
-                android:id="@+id/tablayout_viewpage"
-
-                style="@style/test_textview_style"
-                android:text="    测TabLayout + ViewPager   " />
-
-
-            <TextView
                 android:id="@+id/pullto_test"
 
                 style="@style/test_textview_style"
@@ -208,41 +201,6 @@
                 style="@style/test_textview_style"
                 android:text="  下载文件并显示，一般用在网页中  " />
 
-            <TextView
-                android:id="@+id/tible_scroll_color_text"
-
-                style="@style/test_textview_style"
-                android:text="   滑动scrollview title 变色 " />
-
-
-
-            <TextView
-                android:id="@+id/loading_anim"
-
-                style="@style/test_textview_style"
-                android:text="   测试加载动画   " />
-
-
-            <TextView
-                android:id="@+id/drawer_layout"
-
-                style="@style/test_textview_style"
-                android:text="   测试侧边栏   " />
-
-
-            <TextView
-                android:id="@+id/flowlayout_layout"
-
-                style="@style/test_textview_style"
-                android:text="   测试流布局   " />
-
-
-
-            <TextView
-                android:id="@+id/snackbar_layout"
-
-                style="@style/test_textview_style"
-                android:text="   测试Snackbar  " />
 
 
         </LinearLayout>

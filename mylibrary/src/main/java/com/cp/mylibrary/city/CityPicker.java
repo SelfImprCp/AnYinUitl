@@ -1,4 +1,5 @@
 package com.cp.mylibrary.city;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Handler;
@@ -8,9 +9,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.widget.LinearLayout;
 
-
 import com.cp.mylibrary.R;
 import com.cp.mylibrary.utils.LogCp;
+import com.cp.mylibrary.utils.StringUtils;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -21,7 +22,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map.Entry;
-
 
 
 /**
@@ -35,7 +35,7 @@ public class CityPicker extends LinearLayout {
      */
     private ScrollerNumberPicker provincePicker;
     private ScrollerNumberPicker cityPicker;
-    private ScrollerNumberPicker counyPicker;
+    //private ScrollerNumberPicker counyPicker;
     /**
      * 选择监听
      */
@@ -53,7 +53,7 @@ public class CityPicker extends LinearLayout {
     private Context context;
     private List<Cityinfo> province_list = new ArrayList<Cityinfo>();
     private HashMap<String, List<Cityinfo>> city_map = new HashMap<String, List<Cityinfo>>();
-    private HashMap<String, List<Cityinfo>> couny_map = new HashMap<String, List<Cityinfo>>();
+//    private HashMap<String, List<Cityinfo>> couny_map = new HashMap<String, List<Cityinfo>>();
 
     private CitycodeUtil citycodeUtil;
     private String city_code_string;
@@ -78,13 +78,15 @@ public class CityPicker extends LinearLayout {
         // TODO Auto-generated method stub
         // 读取城市信息string
         JSONParser parser = new JSONParser();
-        String area_str = FileAreaUtil.readAssets(context, "xstarea.json");
+        String area_str = FileAreaUtil.readAssets(context, "licaishi_area.json");
         province_list = parser.getJSONParserResult(area_str, "area0");
         city_map = parser.getJSONParserResultArray(area_str, "area1");
-        couny_map = parser.getJSONParserResultArray(area_str, "area2");
 
 
-        LogCp.i(LogCp.CP,CityPicker.class + "解析了多少省：" + province_list.size() + " 多少市" + city_map.size() + " 区" + couny_map.size() );
+//        couny_map = parser.getJSONParserResultArray(area_str, "area2");
+
+
+        LogCp.i(LogCp.CP, CityPicker.class + "解析了多少省：" + province_list.size() + " 多少市" + city_map + " 区");
 
 
     }
@@ -152,20 +154,19 @@ public class CityPicker extends LinearLayout {
         provincePicker = (ScrollerNumberPicker) findViewById(R.id.province);
 
         cityPicker = (ScrollerNumberPicker) findViewById(R.id.city);
-        counyPicker = (ScrollerNumberPicker) findViewById(R.id.couny);
-        provincePicker.setData(citycodeUtil.getProvince(province_list),province_list,city_map,couny_map);
 
-        provincePicker.setDefault(1);
+        provincePicker.setData(citycodeUtil.getProvince(province_list), province_list, city_map);
+
+        provincePicker.setDefault(0);
 
         cityPicker.setData(citycodeUtil.getCity(city_map, citycodeUtil
-                .getProvince_list_code().get(1)),province_list,city_map,couny_map);
+                .getProvince_list_code().get(0)), province_list, city_map);
 
-        cityPicker.setDefault(1);
+        LogCp.i(LogCp.CP, CityPicker.class + "市有多少" + citycodeUtil
+                .getCity_list_code().size());
 
 
-
-//        LogCp.i(LogCp.CP,CityPicker.class + "区有多少"  +citycodeUtil.getCouny(couny_map, citycodeUtil
-//                .getCity_list_code().get(1)).size());
+        cityPicker.setDefault(0);
 
 
 //        if (citycodeUtil.getCouny(couny_map, citycodeUtil
@@ -176,15 +177,9 @@ public class CityPicker extends LinearLayout {
 //
 //        }else
 //        {
-            counyPicker.setData(citycodeUtil.getCouny(couny_map, citycodeUtil
-                    .getCity_list_code().get(1)),province_list,city_map,couny_map);
 
 //        }
 
-
-
-
-        counyPicker.setDefault(0);
 
         provincePicker.setOnSelectListener(new ScrollerNumberPicker.OnSelectListener() {
 
@@ -199,16 +194,12 @@ public class CityPicker extends LinearLayout {
                     String selectDay = cityPicker.getSelectedText();
                     if (selectDay == null || selectDay.equals(""))
                         return;
-                    String selectMonth = counyPicker.getSelectedText();
-                    if (selectMonth == null || selectMonth.equals(""))
-                        return;
+
                     // 城市数组
                     cityPicker.setData(citycodeUtil.getCity(city_map,
-                            citycodeUtil.getProvince_list_code().get(id)),province_list,city_map,couny_map);
-                    cityPicker.setDefault(1);
-                    counyPicker.setData(citycodeUtil.getCouny(couny_map,
-                            citycodeUtil.getCity_list_code().get(1)),province_list,city_map,couny_map);
-                    counyPicker.setDefault(0);
+                            citycodeUtil.getProvince_list_code().get(id)), province_list, city_map);
+                    cityPicker.setDefault(0);
+
                     int lastDay = Integer.valueOf(provincePicker.getListSize());
                     if (id > lastDay) {
                         provincePicker.setDefault(lastDay - 1);
@@ -236,12 +227,8 @@ public class CityPicker extends LinearLayout {
                     String selectDay = provincePicker.getSelectedText();
                     if (selectDay == null || selectDay.equals(""))
                         return;
-                    String selectMonth = counyPicker.getSelectedText();
-                    if (selectMonth == null || selectMonth.equals(""))
-                        return;
-                    counyPicker.setData(citycodeUtil.getCouny(couny_map,
-                            citycodeUtil.getCity_list_code().get(id)),province_list,city_map,couny_map);
-                    counyPicker.setDefault(0);
+
+
                     int lastDay = Integer.valueOf(cityPicker.getListSize());
                     if (id > lastDay) {
                         cityPicker.setDefault(lastDay - 1);
@@ -259,41 +246,7 @@ public class CityPicker extends LinearLayout {
 
             }
         });
-        counyPicker.setOnSelectListener(new ScrollerNumberPicker.OnSelectListener() {
 
-            @Override
-            public void endSelect(int id, String text) {
-                // TODO Auto-generated method stub
-
-                if (text.equals("") || text == null)
-                    return;
-                if (tempCounyIndex != id) {
-                    String selectDay = provincePicker.getSelectedText();
-                    if (selectDay == null || selectDay.equals(""))
-                        return;
-                    String selectMonth = cityPicker.getSelectedText();
-                    if (selectMonth == null || selectMonth.equals(""))
-                        return;
-                    // 城市数组
-                    city_code_string = citycodeUtil.getCouny_list_code()
-                            .get(id);
-                    int lastDay = Integer.valueOf(counyPicker.getListSize());
-                    if (id > lastDay) {
-                        counyPicker.setDefault(lastDay - 1);
-                    }
-                }
-                tempCounyIndex = id;
-                Message message = new Message();
-                message.what = REFRESH_VIEW;
-                handler.sendMessage(message);
-            }
-
-            @Override
-            public void selecting(int id, String text) {
-                // TODO Auto-generated method stub
-
-            }
-        });
     }
 
     @SuppressLint("HandlerLeak")
@@ -308,6 +261,8 @@ public class CityPicker extends LinearLayout {
                     if (onSelectingListener != null)
                         onSelectingListener.selected(true);
                     break;
+
+
                 default:
                     break;
             }
@@ -325,7 +280,7 @@ public class CityPicker extends LinearLayout {
 
     public String getCity_string() {
         city_string = provincePicker.getSelectedText()
-                + cityPicker.getSelectedText() + counyPicker.getSelectedText();
+                + cityPicker.getSelectedText();
         return city_string;
     }
 
@@ -333,4 +288,24 @@ public class CityPicker extends LinearLayout {
 
         public void selected(boolean selected);
     }
+
+
+
+    public void setCityDefault(String provinceStr, String cityStr) {
+        // 省ID
+        int provinceID = StringUtils.toInt(provincePicker.getSelectedProvinceID(provinceStr)) - 1;
+
+        provincePicker.setDefault(provinceID);
+        // 城市数组
+        cityPicker.setData(citycodeUtil.getCity(city_map,
+                citycodeUtil.getProvince_list_code().get(provinceID)), province_list, city_map);
+
+        int cityIndex = StringUtils.toInt(cityPicker.getSelectedCityIndex(provinceID+1 + "", cityStr));
+        LogCp.i(LogCp.CP, CityPicker.class + cityStr + "  市的位置 ：" +
+                cityIndex);
+
+        cityPicker.setDefault(cityIndex);
+
+    }
+
 }

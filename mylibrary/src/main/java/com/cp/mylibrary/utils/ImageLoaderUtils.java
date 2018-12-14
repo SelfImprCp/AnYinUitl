@@ -2,6 +2,7 @@ package com.cp.mylibrary.utils;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.widget.ImageView;
 
 import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiscCache;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
@@ -86,6 +87,22 @@ public class ImageLoaderUtils {
                 .discCacheFileNameGenerator(new Md5FileNameGenerator())
                 .tasksProcessingOrder(QueueProcessingType.LIFO).build();
         ImageLoader.getInstance().init(config);
+    }
+
+    public static void myDisplayImageShow(String imageUrl, ImageView imageView, int defualtImgId) {
+
+        DisplayImageOptions options = new DisplayImageOptions.Builder()
+                .showStubImage(defualtImgId)
+                .showImageForEmptyUri(defualtImgId)     //url爲空會显示该图片，自己放在drawable里面的
+                .showImageOnFail(defualtImgId)                //加载图片出现问题，会显示该图片
+                .cacheInMemory()                                               //缓存用
+                .cacheOnDisc()                                                    //缓存用
+                .build();
+
+
+        ImageLoader.getInstance().displayImage(imageUrl, imageView, options);
+
+
     }
 
 

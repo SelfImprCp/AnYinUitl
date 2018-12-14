@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">安盈MyUtil</string>
+    <string name="app_name">顾问通MyUtil</string>
 
     <string name="hello_world">Hello world! cp</string>
     <string name="action_settings">Settings</string>
@@ -15,21 +15,4 @@
     <string name="platform_weichat_circle">朋友圈</string>
 
 
-    <string-array name="data">
-        <item>我是第一行数据</item>
-        <item>我是第二行数据</item>
-        <item>我是第二行数据</item>
-        <item>我是第二行数据</item>
-        <item>我是第二行数据</item>
-        <item>我是第二行数据</item>
-        <item>我是第二行数据</item>
-        <item>我是第二行数据</item>
-        <item>我是第二行数据</item>
-        <item>我是第二行数据</item>
-        <item>我是第二行数据</item>
-        <item>我是第二行数据</item>
-        <item>我是第二行数据</item>
-        <item>我是第二行数据</item>
-        <item>我是第二行数据</item>
-    </string-array>
 </resources>
