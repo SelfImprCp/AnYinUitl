@@ -60,10 +60,6 @@
         android:gravity="center"
         android:orientation="horizontal">
 
-
-
-
-
         <com.cp.mylibrary.city.CityPicker
 
             android:id="@+id/citypicker"
