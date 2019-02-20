@@ -374,6 +374,9 @@ public class XRefreshListViewFragment<T extends MyEntity> extends MyBaseFragment
             if (parserError) {
 
                 //解析出错了
+                 LogCp.i(LogCp.CP, XRefreshListViewFragment.class + " 数据解析出错了， ，，"
+                 );
+
 
             } else {
 
