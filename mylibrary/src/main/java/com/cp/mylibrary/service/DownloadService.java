@@ -218,7 +218,17 @@ public class DownloadService extends Service {
 
             return;
         }
-        TDevice.installAPK(mContext, apkfile);
+
+        LogCp.i(LogCp.CP, DownloadService.this + "  手机  android 版本 :   " + Build.VERSION.SDK_INT);
+
+
+        if (Build.VERSION.SDK_INT >= 24) { //判读版本是否在7.0以上
+            TDevice.install(mContext, apkfile);
+        } else {
+            TDevice.installAPK(mContext, apkfile);
+        }
+
+
     }
 
     private Runnable mdownApkRunnable = new Runnable() {
@@ -290,7 +300,6 @@ public class DownloadService extends Service {
 
 
             int readsize = 0;
-
 
 
             while ((readsize = is.read(buffer)) > 0) {

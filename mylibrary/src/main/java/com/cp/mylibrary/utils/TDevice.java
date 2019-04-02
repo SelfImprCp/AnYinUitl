@@ -22,6 +22,7 @@ import android.os.Build;
 import android.os.Environment;
 import android.os.PowerManager;
 import android.provider.Settings;
+import android.support.v4.content.FileProvider;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
@@ -189,6 +190,36 @@ public class TDevice {
 				"application/vnd.android.package-archive");
 		context.startActivity(intent);
 	}
+
+
+
+	/**
+	 * 7.0 以上版本用
+	 *
+	 * @param context
+	 * @param file
+	 */
+
+	public static void install(Context context, File file) {
+//        File file = new File(
+//                Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
+//                , "myApp.apk");
+		//参数1 上下文, 参数2 Provider主机地址 和配置文件中保持一致   参数3  共享的文件
+		Uri apkUri =
+				FileProvider.getUriForFile(context, "com.cp.fileprovider", file);
+
+		Intent intent = new Intent(Intent.ACTION_VIEW);
+		// 由于没有在Activity环境下启动Activity,设置下面的标签
+		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		//添加这一句表示对目标应用临时授权该Uri所代表的文件
+		intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+		intent.setDataAndType(apkUri, "application/vnd.android.package-archive");
+		context.startActivity(intent);
+
+	}
+
+
+
 
 	public static Intent getInstallApkIntent(File file) {
 		Intent intent = new Intent();
