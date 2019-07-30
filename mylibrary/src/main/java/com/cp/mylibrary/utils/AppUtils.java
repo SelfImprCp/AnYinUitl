@@ -9,39 +9,32 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 
 /**
- *
  * 跟App相关的辅助类
  * Created by Jerry on 2016/7/5.
  */
 public class AppUtils {
 
 
-
     private static final int MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 1;
 
-    private static final int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE =2;
+    private static final int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 2;
 
-    private static final int MY_PERMISSIONS_REQUEST_CAMERA =3;
+    private static final int MY_PERMISSIONS_REQUEST_CAMERA = 3;
 
 
     /**
-     *
      * @param context
      * @return
      */
-     public static String getPackageName  (Context context)
-     {
-          return context.getPackageName();
-     }
+    public static String getPackageName(Context context) {
+        return context.getPackageName();
+    }
 
     /**
      * 检查权限
      */
-    public static   void getPromission(Activity context)
-    {
-        LogCp.i(LogCp.CP,    AppUtils .class + "  来取权限!");
-
-
+    public static void getPromission(Activity context) {
+        LogCp.i(LogCp.CP, AppUtils.class + "  来取权限!");
 
 
 //        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
@@ -61,20 +54,13 @@ public class AppUtils {
             //do not have permission
             LogCp.i(LogCp.CP, "  没有 读取sdcard 的权限!");
             // Should we show an explanation?
-            if (ActivityCompat.shouldShowRequestPermissionRationale(context,
-                    Manifest.permission.READ_EXTERNAL_STORAGE)) {
 
 
+            ActivityCompat.requestPermissions(context,
+                    new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                    MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
 
-
-            } else {
-
-                ActivityCompat.requestPermissions(context,
-                        new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
-                        MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
-            }
         }
-
 
 
         // 写入sdcard 权限
@@ -85,22 +71,14 @@ public class AppUtils {
             //do not have permission
             LogCp.i(LogCp.CP, "  没有 写入sdcard 的权限!");
             // Should we show an explanation?
-            if (ActivityCompat.shouldShowRequestPermissionRationale(context,
-                    Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
 
 
-            } else {
+            ActivityCompat.requestPermissions(context,
+                    new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                    MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
 
 
-                ActivityCompat.requestPermissions(context,
-                        new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                        MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
-
-
-
-            }
         }
-
 
 
         //  使用相机的权限
@@ -111,28 +89,14 @@ public class AppUtils {
             //do not have permission
             LogCp.i(LogCp.CP, "  没有  使用相机  的权限!");
             // Should we show an explanation?
-            if (ActivityCompat.shouldShowRequestPermissionRationale(context,
-                    Manifest.permission.CAMERA)) {
 
 
-            } else {
+            ActivityCompat.requestPermissions(context,
+                    new String[]{Manifest.permission.CAMERA},
+                    MY_PERMISSIONS_REQUEST_CAMERA);
 
 
-                ActivityCompat.requestPermissions(context,
-                        new String[]{Manifest.permission.CAMERA},
-                        MY_PERMISSIONS_REQUEST_CAMERA);
-
-
-
-            }
         }
-
-
-
-
-
-
-
 
 
     }
