@@ -2,15 +2,21 @@ apply plugin: 'com.android.application'
 
 
 android {
-    compileSdkVersion 23
+    compileSdkVersion 26
     buildToolsVersion '25'
-
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
     defaultConfig {
         applicationId "cn.myasapp.main"
         minSdkVersion 16
-        targetSdkVersion 23
+        targetSdkVersion 26
         versionCode 1
         versionName "1.0"
+        jackOptions {
+            enabled true
+        }
     }
     buildTypes {
         release {
@@ -26,9 +32,13 @@ android {
 
 
 allprojects {
+
+
+
     repositories {
         maven { url "https://jitpack.io" }
         mavenCentral()
+        maven { url 'https://maven.google.com' }
     }
 }
 

@@ -37,13 +37,6 @@ public class AppUtils {
         LogCp.i(LogCp.CP, AppUtils.class + "  来取权限!");
 
 
-//        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-//                != PackageManager.PERMISSION_GRANTED) {
-//            //申请WRITE_EXTERNAL_STORAGE权限
-//            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-//                    WRITE_EXTERNAL_STORAGE_REQUEST_CODE);
-//        }
-//
 
 
         // 读取sdcard 权限
