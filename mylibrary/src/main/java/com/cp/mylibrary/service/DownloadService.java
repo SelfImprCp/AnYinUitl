@@ -3,16 +3,19 @@ package com.cp.mylibrary.service;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.Notification;
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Binder;
 import android.os.Build;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
+import android.support.v4.app.NotificationCompat;
 import android.widget.RemoteViews;
 
 import com.cp.mylibrary.R;
@@ -172,31 +175,74 @@ public class DownloadService extends Service {
     /**
      * 创建通知
      */
+    private String CHANNEL_ID = "0001";
+
+
     private void setUpNotification() {
         int icon = R.drawable.ic_launcher;
         CharSequence tickerText = "准备下载";
         long when = System.currentTimeMillis();
+
+        // 此处必须兼容android O设备，否则系统版本在O以上可能不展示通知栏
+
+
+        String name = "download";
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel mChannel = new NotificationChannel(CHANNEL_ID, name, NotificationManager.IMPORTANCE_LOW);
+            mChannel.setDescription(name);
+            mChannel.enableLights(true);
+            mChannel.setLightColor(Color.BLUE);
+            mChannel.enableVibration(true);
+            mChannel.setVibrationPattern(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
+
+
+            mNotificationManager.createNotificationChannel(mChannel);
+
+
+        }
+
         mNotification = new Notification(icon, tickerText, when);
-        ;
-        // 放置在"正在运行"栏目中
+//        // 放置在"正在运行"栏目中
         mNotification.flags = Notification.FLAG_ONGOING_EVENT;
 
-        RemoteViews contentView = new RemoteViews(getPackageName(),
-                R.layout.download_notification_show);
-        contentView.setTextViewText(R.id.tv_download_state, mTitle);
-        // 指定个性化视图
-        mNotification.contentView = contentView;
 
-//		Intent intent = new Intent(this, MyBaseActivity.this);
-//		PendingIntent contentIntent = PendingIntent.getActivity(this, 0,
-//				intent, PendingIntent.FLAG_UPDATE_CURRENT);
-//
-//		// 指定内容意图
-//		mNotification.contentIntent = contentIntent;
+        RemoteViews contentViewv = new RemoteViews(getPackageName(),
+                R.layout.download_notification_show);
+        contentViewv.setTextViewText(R.id.tv_download_state, mTitle);
+        // 指定个性化视图
+//        mNotification.contentView = contentViewv;
+
+        PendingIntent pendingintent = PendingIntent.getActivity(mContext, 0, new Intent(), PendingIntent.FLAG_UPDATE_CURRENT);
+
+        NotificationCompat.Builder builder = getNofity(contentViewv)
+                .setProgress(100, progress, false)
+                .setContentIntent(pendingintent);
+        builder.setContent(contentViewv);
+
+        mNotification = builder.build();
 
 
         mNotificationManager.notify(NOTIFY_ID, mNotification);
+
     }
+
+
+    private NotificationCompat.Builder getNofity(RemoteViews contentView) {
+        return new NotificationCompat.Builder(mContext.getApplicationContext(), CHANNEL_ID)
+
+                .setContentTitle("版本更新")
+                .setContentText("准备下载")
+                .setSmallIcon(R.drawable.ic_launcher)
+
+                .setAutoCancel(true)
+                .setOnlyAlertOnce(true)
+                .setWhen(System.currentTimeMillis())
+                .setContent(contentView)
+                .setPriority(NotificationCompat.PRIORITY_HIGH);
+
+    }
+
 
     private void downloadApk() {
         downLoadThread = new Thread(mdownApkRunnable);
