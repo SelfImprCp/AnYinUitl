@@ -20,6 +20,7 @@ import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
 
+import com.cp.mylibrary.app.Config;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.io.ByteArrayOutputStream;
@@ -256,34 +257,47 @@ public class ImageUtils {
         return filePath;
     }
 
+
     /**
      * 通过uri获取文件的绝对路径
      *
      * @param uri
      * @return
      */
+
     @SuppressWarnings("deprecation")
     public static String getAbsoluteImagePath(Activity context, Uri uri) {
-        String imagePath = "";
-        String[] proj = { MediaStore.Images.Media.DATA };
-        Cursor cursor = context.managedQuery(uri, proj, // Which columns to
-                // return
-                null, // WHERE clause; which rows to return (all rows)
-                null, // WHERE clause selection arguments (none)
-                null); // Order-by clause (ascending by name)
 
-        if (cursor != null) {
-            int column_index = cursor
-                    .getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-            if (cursor.getCount() > 0 && cursor.moveToFirst()) {
-                imagePath = cursor.getString(column_index);
-            }
-        }
 
-        return imagePath;
+        return getFilePathByUri(context, uri);
+
+
     }
 
 
+    public static String getFilePathByUri(Context context, Uri uri) {
+        String path = null;
+
+        if (uri.getAuthority().contains(Config.FILE_PROVIDER)) {
+            path = uri.getPath();
+            return path;
+        } else {
+            Cursor cursor = context.getContentResolver().query(uri, new String[]{MediaStore.Images.Media.DATA}, null, null, null);
+            if (cursor != null) {
+                if (cursor.moveToFirst()) {
+                    int columnIndex = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+                    if (columnIndex > -1) {
+                        path = cursor.getString(columnIndex);
+                    }
+                }
+                cursor.close();
+            }
+            return path;
+
+        }
+
+
+    }
 
     /**
      * 推荐banner 图片 750*298
