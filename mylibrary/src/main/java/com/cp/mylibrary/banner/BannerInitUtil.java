@@ -32,16 +32,16 @@ public class BannerInitUtil {
 
      // 将最后一个ImageView添加进来
      views.add(ViewFactory.getImageView(context,
-             infos.get(infos.size() - 1).getUrl(), R.layout.view_banner, 0));
+             infos.get(infos.size() - 1).getUrl(), R.layout.view_banner, 20));
      for (int i = 0; i < infos.size(); i++) {
          views.add(ViewFactory.getImageView(context, infos.get(i)
-                 .getUrl(), R.layout.view_banner, 0));
+                 .getUrl(), R.layout.view_banner, 20));
      }
 
      // cycleViewPager.
      // 将第一个ImageView添加进来
      views.add(ViewFactory.getImageView(context,
-             infos.get(0).getUrl(), R.layout.view_banner, 0));
+             infos.get(0).getUrl(), R.layout.view_banner, 20));
 
      // 设置循环，在调用setData方法前调用
      cycleViewPager.setCycle(true);
