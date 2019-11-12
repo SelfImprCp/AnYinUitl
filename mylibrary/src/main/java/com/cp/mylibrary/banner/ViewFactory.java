@@ -17,50 +17,48 @@ import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
  */
 public class ViewFactory {
 
-	/**
-	 * 获取ImageView视图的同时加载显示url
-	 * 
-	 * @param
-	 * 
-	 * @return
-	 */
+    /**
+     * 获取ImageView视图的同时加载显示url
+     *
+     * @param
+     * @return
+     */
 
-	public static ImageView getImageView(final Context context, String url, int layoutID, final int round) {
-		final ImageView imageView = (ImageView) LayoutInflater.from(context).inflate(
-				layoutID, null);
+    public static ImageView getImageView(final Context context, String url, int layoutID, final int round) {
+        final ImageView imageView = (ImageView) LayoutInflater.from(context).inflate(
+                layoutID, null);
 
-		ImageLoader.getInstance().displayImage(url, imageView,
-				new ImageLoadingListener() {
+        ImageLoader.getInstance().displayImage(url, imageView,
+                new ImageLoadingListener() {
 
-					@Override
-					public void onLoadingStarted(String imageUri, View view) {
-					 			//imageView.setImageResource(R.drawable.banner_default);
-					}
+                    @Override
+                    public void onLoadingStarted(String imageUri, View view) {
+                        //imageView.setImageResource(R.drawable.banner_default);
+                    }
 
-					@Override
-					public void onLoadingFailed(String imageUri, View view,
-												FailReason failReason) {
-						//	imageView.setImageResource(R.drawable.banner_default);
+                    @Override
+                    public void onLoadingFailed(String imageUri, View view,
+                                                FailReason failReason) {
+                        //	imageView.setImageResource(R.drawable.banner_default);
 
 
-					}
+                    }
 
-					@Override
-					public void onLoadingComplete(String imageUri, View view,
-												  Bitmap loadedImage) {
-					 if(round>0)
-					 {
-						imageView.setImageBitmap(   ImageUtils.getRoundedCornerBitmap(loadedImage, round));
-					 }
-					}
+                    @Override
+                    public void onLoadingComplete(String imageUri, View view,
+                                                  Bitmap loadedImage) {
+                        if (round > 0) {
+                            imageView.setImageBitmap(ImageUtils.getRoundedCornerBitmap(loadedImage, round));
+                        }
+                    }
 
-					@Override
-					public void onLoadingCancelled(String imageUri, View view) {
-						//	imageView.setImageResource(R.drawable.banner_default);
+                    @Override
+                    public void onLoadingCancelled(String imageUri, View view) {
+                        //	imageView.setImageResource(R.drawable.banner_default);
 
-					}
-				});
-		LogCp.i(LogCp.CP, ViewFactory.class + "  显示 图片 的url 》" + url);
-		return imageView;
-	}
+                    }
+                });
+        LogCp.i(LogCp.CP, ViewFactory.class + "  显示 图片 的url 》" + url);
+        return imageView;
+    }
 }

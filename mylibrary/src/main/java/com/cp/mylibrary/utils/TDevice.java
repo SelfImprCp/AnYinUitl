@@ -36,6 +36,8 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 
 
+import com.cp.mylibrary.app.Config;
+
 import java.io.File;
 import java.lang.reflect.Field;
 import java.text.NumberFormat;
@@ -206,7 +208,7 @@ public class TDevice {
 //                , "myApp.apk");
 		//参数1 上下文, 参数2 Provider主机地址 和配置文件中保持一致   参数3  共享的文件
 		Uri apkUri =
-				FileProvider.getUriForFile(context, "com.g.fileprovider", file);
+				FileProvider.getUriForFile(context, Config.FILE_PROVIDER, file);
 
 		Intent intent = new Intent(Intent.ACTION_VIEW);
 		// 由于没有在Activity环境下启动Activity,设置下面的标签

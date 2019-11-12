@@ -10,6 +10,7 @@ import android.os.Build;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.provider.MediaStore.Images;
+import android.support.v4.content.FileProvider;
 import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -21,6 +22,7 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 
 import com.cp.mylibrary.R;
+import com.cp.mylibrary.app.Config;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -364,6 +366,21 @@ public class CameraAndSelectPicUtil {
 		protraitFile = new File(protraitPath);
 
 		cropUri = Uri.fromFile(protraitFile);
+
+
+
+
+
+		if (Build.VERSION.SDK_INT >= 24) { //判读版本是否在7.0以上
+			cropUri =
+					FileProvider.getUriForFile(mContext, Config.FILE_PROVIDER, protraitFile);
+
+		} else {
+			cropUri = Uri.fromFile(protraitFile);
+		}
+
+
+
 		return this.cropUri;
 	}
 
