@@ -55,7 +55,7 @@ public class MyBaseActivity extends KJActivity {
         //     android:fitsSystemWindows="true"
         //  android:clipToPadding="false"
         //透明状态栏
-      //  getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        //  getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         //透明导航栏
         //  getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
 
@@ -65,11 +65,11 @@ public class MyBaseActivity extends KJActivity {
             setTranslucentStatus(true);
         }
         //为状态栏着色
-//        tintManager = new SystemBarTintManager(this);
-//        tintManager.setStatusBarTintEnabled(true);
+        tintManager = new SystemBarTintManager(this);
+        tintManager.setStatusBarTintEnabled(true);
+
 //
-//
-//        tintManager.setStatusBarTintResource(R.color.base_color);
+        tintManager.setStatusBarTintResource(R.color.bgColor_overlay);
 //
 //
 
