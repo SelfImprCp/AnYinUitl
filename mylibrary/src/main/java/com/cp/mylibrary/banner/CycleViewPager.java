@@ -163,7 +163,7 @@ public class CycleViewPager extends Fragment implements OnPageChangeListener {
 				RelativeLayout.LayoutParams.WRAP_CONTENT,
 				RelativeLayout.LayoutParams.WRAP_CONTENT);
 		params.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
-		params.addRule(RelativeLayout.CENTER_HORIZONTAL);
+		params.addRule(RelativeLayout.ALIGN_RIGHT);
 		indicatorLayout.setLayoutParams(params);
 	}
 
