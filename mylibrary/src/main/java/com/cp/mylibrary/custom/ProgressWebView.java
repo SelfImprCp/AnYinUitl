@@ -2,6 +2,7 @@ package com.cp.mylibrary.custom;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.util.AttributeSet;
 import android.view.View;
 import android.webkit.WebSettings;
@@ -14,8 +15,8 @@ import com.cp.mylibrary.R;
 
 /**
  * Created by Jerry on 2016/7/7.
- *
- *仿微信中加载网页时带线行进度条的WebView的实现
+ * <p>
+ * 仿微信中加载网页时带线行进度条的WebView的实现
  */
 public class ProgressWebView extends WebView {
     private ProgressBar progressbar;
@@ -30,10 +31,11 @@ public class ProgressWebView extends WebView {
         Drawable drawable = context.getResources().getDrawable(R.drawable.progress_bar_states);
         progressbar.setProgressDrawable(drawable);
         addView(progressbar);
-         setWebViewClient(new MyWebViewClient(){});
+        setWebViewClient(new MyWebViewClient() {
+        });
         setWebChromeClient(new WebChromeClient());
 
-        WebSettings webSettings =  getSettings();
+        WebSettings webSettings = getSettings();
         webSettings.setJavaScriptEnabled(true);
 
         webSettings.setDefaultTextEncodingName("utf-8");
@@ -46,7 +48,16 @@ public class ProgressWebView extends WebView {
         // 全屏显示
         webSettings.setLoadWithOverviewMode(true);
         webSettings.setUseWideViewPort(true);
+//        Android webView从Lollipop(5.0)开始webView默认不允许混合模式,https当中不能加载http资源,而当开发的时候如果使用的是https链接,但是链接中的图片又是http的就有可能会出现加载不了图片的现象,这需要开启支持
+//
+//        问题解决
+//                在webView中通过判断版本去确定是否开启支持
 
+
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) {
+            webSettings.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
+        }
+        webSettings.setBlockNetworkImage(false);
 
 
     }
@@ -65,7 +76,6 @@ public class ProgressWebView extends WebView {
         }
 
     }
-
 
 
     private class MyWebViewClient extends WebViewClient {
