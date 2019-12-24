@@ -61,15 +61,15 @@ public class MyBaseActivity extends KJActivity {
 
 
         //只对api19以上版本有效
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            setTranslucentStatus(true);
-        }
-        //为状态栏着色
-        tintManager = new SystemBarTintManager(this);
-        tintManager.setStatusBarTintEnabled(true);
-
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+//            setTranslucentStatus(true);
+//        }
+//        //为状态栏着色
+//        tintManager = new SystemBarTintManager(this);
+//        tintManager.setStatusBarTintEnabled(true);
 //
-        tintManager.setStatusBarTintResource(R.color.bgColor_overlay);
+//
+//        tintManager.setStatusBarTintResource(R.color.bgColor_overlay);
 //
 //
 
