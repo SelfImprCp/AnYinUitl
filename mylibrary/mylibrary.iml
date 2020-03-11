@@ -91,7 +91,6 @@
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/shaders" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/symbols" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/transforms" />
-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/typedefs.txt" />
       <excludeFolder url="file://$MODULE_DIR$/build/outputs" />
       <excludeFolder url="file://$MODULE_DIR$/build/tmp" />
     </content>
@@ -138,11 +137,11 @@
     <orderEntry type="library" exported="" name="common-1.1.0" level="project" />
     <orderEntry type="library" exported="" name="1_common-1.1.0" level="project" />
     <orderEntry type="library" exported="" name="cardview-v7-27.1.1" level="project" />
-    <orderEntry type="library" exported="" scope="TEST" name="hamcrest-core-1.3" level="project" />
     <orderEntry type="library" exported="" name="eventbus" level="project" />
     <orderEntry type="library" exported="" name="SocialSDK_WeChat_Simplify" level="project" />
     <orderEntry type="library" exported="" name="support-core-ui-27.1.1" level="project" />
-    <orderEntry type="library" exported="" scope="TEST" name="junit-4.12" level="project" />
+    <orderEntry type="library" exported="" scope="TEST" name="hamcrest-core-1.3" level="project" />
     <orderEntry type="library" exported="" name="support-fragment-27.1.1" level="project" />
+    <orderEntry type="library" exported="" scope="TEST" name="junit-4.12" level="project" />
   </component>
 </module>

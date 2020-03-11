@@ -30,8 +30,7 @@ import org.kymjs.kjframe.KJActivity;
 public class MyBaseActivity extends KJActivity {
 
    public Context mContext;
-    //为状态栏着色
-  public SystemBarTintManager tintManager ;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,20 +61,6 @@ public class MyBaseActivity extends KJActivity {
     }
 
 
-    @TargetApi(19)
-    private void setTranslucentStatus(boolean on) {
-        Window win = getWindow();
-        WindowManager.LayoutParams winParams = win.getAttributes();
-        final int bits = WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS;
-        if (on) {
-            winParams.flags |= bits;
-        } else {
-            winParams.flags &= ~bits;
-        }
-        win.setAttributes(winParams);
-    }
-
-
 
 
 
@@ -87,7 +72,7 @@ public class MyBaseActivity extends KJActivity {
         mContext = null;
 
         super.onDestroy();
-   //     EventBus.getDefault().unregister(this);
+
     }
 
 
@@ -123,14 +108,6 @@ public class MyBaseActivity extends KJActivity {
     public void setRootView() {
 
     }
-
-//
-//    /**
-//     *  初始化字体
-//     */
-//    protected void initFont() {
-//
-//    }
 
 
     /**
